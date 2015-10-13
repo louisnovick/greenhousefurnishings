@@ -16,7 +16,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -32,7 +32,7 @@
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> 407 371 1234</a></li>
+								<li><a href="#"><i class="fa fa-phone"></i> 40 371 1234</a></li>
 								<li><a href="#"><i class="fa fa-envelope"></i> info@greenhousefurniture.com</a></li>
 							</ul>
 						</div>
@@ -50,7 +50,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -69,8 +69,8 @@
 									<li><a href="#">USA</a></li>
 								</ul>
 							</div>
-							
-							
+
+
 						</div>
 					</div>
 					<div class="col-sm-8">
@@ -87,7 +87,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -106,13 +106,13 @@
 								<li class="dropdown"><a href="#">Shop<i class="fa fa-angle-down"></i></a>
                                     <ul role="menu" class="sub-menu">
                                         <li><a href="shop.php">Products</a></li>
-										<li><a href="product-details.php">Product Details</a></li> 
-										<li><a href="checkout.php">Checkout</a></li> 
-										<li><a href="cart.php" class="active">Cart</a></li> 
-										<li><a href="login.php">Login</a></li> 
+										<li><a href="product-details.php">Product Details</a></li>
+										<li><a href="checkout.php">Checkout</a></li>
+										<li><a href="cart.php" class="active">Cart</a></li>
+										<li><a href="login.php">Login</a></li>
                                     </ul>
-                                </li> 
-								
+                                </li>
+
 								<li><a href="404.php">404</a></li>
 								<li><a href="contact-us.php">Contact</a></li>
 							</ul>
@@ -261,7 +261,7 @@
 									<option>United States</option>
 									<option>Canada</option>
 								</select>
-								
+
 							</li>
 							<li class="single_field">
 								<label>Region / State:</label>
@@ -270,7 +270,7 @@
 									<option>United States</option>
 									<option>Canada</option>
 								</select>
-							
+
 							</li>
 							<li class="single_field zip-field">
 								<label>Zip Code:</label>
@@ -322,7 +322,7 @@
 								<h2>Developer</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -337,7 +337,7 @@
 								<h2>Designer</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -352,7 +352,7 @@
 								<h2>Merketing</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-3">
 							<div class="video-gallery text-center">
 								<a href="#">
@@ -377,7 +377,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
@@ -438,11 +438,11 @@
 							</form>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -451,9 +451,9 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</footer><!--/Footer-->
-	
+
 
 
     <script src="js/jquery.js"></script>
