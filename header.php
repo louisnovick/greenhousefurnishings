@@ -52,7 +52,11 @@
 								<li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li>
 								<li><a href="checkout.php"><i class="fa fa-crosshairs"></i> Checkout</a></li>
 								<li><a href="cart.php"><i class="fa fa-shopping-cart"></i> Cart</a></li>
+								<?php if(!isset($_SESSION['logged_in'])) { ?>
 								<li><a href="login.php"><i class="fa fa-lock"></i> Login</a></li>
+								<?php } else { ?>
+								<li><a href="logout.php"><i class="fa fa-lock"></i> Logout of <?php print($_SESSION['logged_in_user']) ?></a></li>
+								<?php } ?>
 							</ul>
 						</div>
 					</div>

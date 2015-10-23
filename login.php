@@ -1,4 +1,35 @@
+<?php
+	session_start();
 
+	include("db_connect.php");
+
+	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
+
+		$user_query = "SELECT * FROM users";
+		$user_result = $mysqli->query($user_query);
+		if($mysqli->error) {
+			print "Error: Someone's getting fired.";
+		}
+
+		while($row = $user_result->fetch_object()) {
+			if((($_POST['username']) == ($row->username)) && ($_POST['password'] == ($row->password))) {
+				$_SESSION['logged_in'] = true;
+				$_SESSION['logged_in_user'] = $row->username;
+				$_SESSION['logged_in_user_access'] = $row->userAccess;
+				$_SESSION['logged_in_user_fn'] = $row->fName;
+				$_SESSION['logged_in_user_ln'] = $row->lName;
+				$_SESSION['logged_in_user_email'] = $row->email;
+				$_SESSION['logged_in_user_address'] = $row->shippingAddress;
+			} else {
+
+			}
+		}	
+	}
+
+	if (isset($_SESSION['logged_in'])) {
+		header('Location: home.php');
+	}
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -35,15 +66,14 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Login to your account</h2>
-						<form action="#">
-							<input type="text" placeholder="Name" />
-							<input type="email" placeholder="Email Address" />
+						<form action="login.php" method="post">
+							<input name="username" id="username" type="text" placeholder="Username" />
+							<input name="password" id="password" type="password" placeholder="Password" />
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
 							</span>
-							<button type="submit" class="btn btn-default">Login</button>
-							<button type="submit" class="btn btn-default"><a href="admin.php">Admin Login</a></button>
+							<button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
 						</form>
 					</div><!--/login form-->
 				</div>

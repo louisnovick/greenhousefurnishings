@@ -1,5 +1,8 @@
 
 <?php include("db_connect.php");
+
+	session_start();
+
 	$select_query = "SELECT product_name,
 					products,
 					skuId
