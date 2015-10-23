@@ -25,7 +25,7 @@
 </head><!--/head-->
 
 <body>
-	<? include("header.php"); ?>
+	<?php include("header.php"); ?>
 
 	<section id="cart_items">
 		<div class="container">
@@ -196,7 +196,7 @@
 		</div>
 	</section><!--/#do_action-->
 
-		<? include("footer.php"); ?>
+		<?php include("footer.php"); ?>
 
 
 

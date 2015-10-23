@@ -1,5 +1,5 @@
 
-<? include("db_connect.php");
+<?php include("db_connect.php");
 	$select_query = "SELECT product_name,
 					products,
 					skuId
@@ -33,7 +33,7 @@
 </head><!--/head-->
 
 <body>
-<? include("header.php"); ?>
+<?php include("header.php"); ?>
 	
 	<section id="slider"><!--slider-->
 		<div class="container">
@@ -260,9 +260,7 @@
 
 <!--/PHP FEATURED ITEM PULL-->
 
-				<? $featured = "SELECT productName,
-										price,
-										image
+				<?php $featured = "SELECT *
 									FROM products
 										WHERE productID=1";
 										$featured_result = $mysqli->query($featured);
@@ -277,16 +275,16 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 										<div class="productinfo text-center">
-											<? print "<img src=\"".$featured_item->image."\" alt=\"".$featured_item->productName."\"\n"; ?>
+											<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
 											<img src="images/home/VintageLamp1.jpg" alt="" />
-											<? print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<? print "<p>".$featured_item->productName."</p>\n";  ?>
+											<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
+											<?php print "<p>".$featured_item->name."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<? print "<p>".$featured_item->price."</p>\n";  ?>
-												<? print "<p>".$featured_item->productName."</p>\n";  ?>
+												<?php print "<p>".$featured_item->price."</p>\n";  ?>
+												<?php print "<p>".$featured_item->name."</p>\n";  ?>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
@@ -301,9 +299,7 @@
 						</div>
 
 
-				<? $featured = "SELECT productName,
-										price,
-										image
+				<?php $featured = "SELECT *
 									FROM products
 										WHERE productID=2";
 										$featured_result = $mysqli->query($featured);
@@ -314,16 +310,16 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<? print "<img src=\"".$featured_item->image."\" alt=\"".$featured_item->productName."\"\n"; ?>
+										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
 										<img src="images/home/ModernLamp3.jpg" alt="" />
-										<? print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<? print "<p>".$featured_item->productName."</p>\n";  ?>
+										<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
+											<?php print "<p>".$featured_item->name."</p>\n";  ?>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<? print "<p>".$featured_item->price."</p>\n";  ?>
-											<? print "<p>".$featured_item->productName."</p>\n";  ?>
+											<?php print "<p>".$featured_item->price."</p>\n";  ?>
+											<?php print "<p>".$featured_item->name."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
@@ -337,9 +333,7 @@
 							</div>
 						</div>
 
-			<? $featured = "SELECT productName,
-										price,
-										image
+			<?php $featured = "SELECT *
 									FROM products
 										WHERE productID=3";
 										$featured_result = $mysqli->query($featured);
@@ -349,16 +343,16 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<? print "<img src=\"".$featured_item->image."\" alt=\"".$featured_item->productName."\"\n"; ?>
+										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
 										<img src="images/home/RusticLamp4.jpg" alt="" />
-										<? print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<? print "<p>".$featured_item->productName."</p>\n";  ?>
+										<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
+											<?php print "<p>".$featured_item->name."</p>\n";  ?>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<? print "<p>".$featured_item->price."</p>\n";  ?>
-											<? print "<p>".$featured_item->productName."</p>\n";  ?>
+											<?php print "<p>".$featured_item->price."</p>\n";  ?>
+											<?php print "<p>".$featured_item->name."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
@@ -672,7 +666,7 @@
 		</div>
 	</section>
 	
-	<? include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 	
 
   
@@ -686,4 +680,4 @@
 </html>
 
 
-<? $mysqli->close(); ?>
+<?php $mysqli->close(); ?>

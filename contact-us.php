@@ -25,7 +25,7 @@
 </head><!--/head-->
 
 <body>
-	<? include("header.php"); ?>
+	<?php include("header.php"); ?>
 	 
 	 <div id="contact-page" class="container">
     	<div class="bg">
@@ -93,7 +93,7 @@
     	</div>	
     </div><!--/#contact-page-->
 	
-	<? include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 	
 
 

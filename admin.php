@@ -25,7 +25,7 @@
 </head><!--/head-->
 
 <body>
-	<? include("header.php"); ?>
+	<?php include("header.php"); ?>
 	
 	<section id="form"><!--form-->
 		<div class="container">
@@ -53,7 +53,7 @@
 	</section><!--/form-->
 	
 	
-	<? include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 	
 
 
