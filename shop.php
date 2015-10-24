@@ -1,5 +1,25 @@
 <?php
     session_start();
+
+    include("db_connect.php");
+
+	if (isset($_GET['collection']) && isset($_GET['type'])) {;
+		 
+	    $select_products_query = "SELECT * 
+	    						  FROM products 
+	    						  WHERE type = '".$_GET['type']."' AND collection = '".$_GET['collection']."'";
+	    $select_products_result = $mysqli->query($select_products_query);
+	} else if (isset($_GET['collection'])) {
+		$select_products_query = "SELECT * 
+	    						  FROM products 
+	    						  WHERE collection = '".$_GET['collection']."'";
+	    $select_products_result = $mysqli->query($select_products_query);
+	} else {
+		$select_products_query = "SELECT * 
+								  FROM products 
+								  WHERE feature = '1'";
+	    $select_products_result = $mysqli->query($select_products_query);
+	}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -55,9 +75,9 @@
 								<div id="lamps" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
+											<li><a href="shop.php?collection=vintage&type=lamp">Vintage</a></li>
+											<li><a href="shop.php?collection=rustic&type=lamp">Rustic</a></li>
+											<li><a href="shop.php?collection=modern&type=lamp">Modern</a></li>
 										</ul>
 									</div>
 								</div>
@@ -74,9 +94,9 @@
 								<div id="chairs" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
+											<li><a href="shop.php?collection=vintage&type=chair">Vintage</a></li>
+											<li><a href="shop.php?collection=rustic&type=chair">Rustic</a></li>
+											<li><a href="shop.php?collection=modern&type=chair">Modern</a></li>
 										</ul>
 									</div>
 								</div>
@@ -94,9 +114,9 @@
 								<div id="sofas" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
+											<li><a href="shop.php?collection=vintage&type=sofa">Vintage</a></li>
+											<li><a href="shop.php?collection=rustic&type=sofa">Rustic</a></li>
+											<li><a href="shop.php?collection=modern&type=sofa">Modern</a></li>
 										</ul>
 									</div>
 								</div>
@@ -115,9 +135,9 @@
 								<div id="bookcases" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
+											<li><a href="shop.php?collection=vintage&type=bookcase">Vintage</a></li>
+											<li><a href="shop.php?collection=rustic&type=bookcase">Rustic</a></li>
+											<li><a href="shop.php?collection=modern&type=bookcase">Modern</a></li>
 										</ul>
 									</div>
 								</div>
@@ -136,9 +156,9 @@
 								<div id="tables" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
+											<li><a href="shop.php?collection=vintage&type=table">Vintage</a></li>
+											<li><a href="shop.php?collection=rustic&type=table">Rustic</a></li>
+											<li><a href="shop.php?collection=modern&type=table">Modern</a></li>
 										</ul>
 									</div>
 								</div>
@@ -157,9 +177,9 @@
 								<div id="dressers" class="panel-collapse collapse">
 									<div class="panel-body">
 										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
+											<li><a href="shop.php?collection=vintage&type=dresser">Vintage</a></li>
+											<li><a href="shop.php?collection=rustic&type=dresser">Rustic</a></li>
+											<li><a href="shop.php?collection=modern&type=dresser">Modern</a></li>
 										</ul>
 									</div>
 								</div>
@@ -172,9 +192,9 @@
 							<h2>Collections</h2>
 							<div class="brands-name">
 								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(20)</span>Vintage Collection</a></li>
-									<li><a href="#"> <span class="pull-right">(20)</span>Rustic Collection</a></li>
-									<li><a href="#"> <span class="pull-right">(20)</span>Modern Collection</a></li>
+									<li><a href="shop.php?collection=vintage"> <span class="pull-right">(20)</span>Vintage Collection</a></li>
+									<li><a href="shop.php?collection=rustic"> <span class="pull-right">(20)</span>Rustic Collection</a></li>
+									<li><a href="shop.php?collection=modern"> <span class="pull-right">(20)</span>Modern Collection</a></li>
 								</ul>
 							</div>
 						</div><!--/brands_products-->
@@ -195,20 +215,23 @@
 				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
-						<h2 class="title text-center">Features Items</h2>
+						<h2 class="title text-center">Featured Items</h2>						
+						<?php
+							while($row = $select_products_result->fetch_object()) {
+						?>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Vintage Lamp</p>
+										<img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> />
+											<h2><?php echo "$row->price"; ?></h2>
+											<p><?php echo "$row->name"; ?></p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
+												<h2><?php echo "$row->price"; ?></h2>
+												<p><?php echo "$row->name"; ?></p>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 									</div>
@@ -221,297 +244,15 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Vintage Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp3.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Vintage Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ModernLamp1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Modern Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ModernLamp2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Modern Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ModernLamp3.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Modern Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
+						<?php } ?>
 						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/RusticLamp1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Rustic Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Rustic Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/RusticLamp2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Rustic Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Rustic Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/RusticLamp3.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Rustic Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Rustic Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/RusticLamp4.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Rustic Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Rustic Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp1.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Vintage Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp2.jpg" alt="" />
-											<h2>$56</h2>
-											<p>Vintage Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-										<div class="product-overlay">
-											<div class="overlay-content">
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
+						<!--
 						<ul class="pagination">
 							<li class="active"><a href="">1</a></li>
 							<li><a href="">2</a></li>
 							<li><a href="">3</a></li>
 							<li><a href="">&raquo;</a></li>
-						</ul>
+						</ul> -->
 					</div><!--features_items-->
 				</div>
 			</div>
