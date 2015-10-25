@@ -1,5 +1,19 @@
 <?php
     session_start();
+
+    include("db_connect.php");
+
+    if (isset($_GET['productID'])) {
+    	
+    	$select_product_query = "SELECT * FROM products WHERE productID = '".$_GET['productID']."'";
+
+    	$select_product_result = $mysqli->query($select_product_query);
+
+    	$product_details = $select_product_result->fetch_object();
+
+    } else {
+    	header("Location: shop.php");
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,171 +47,21 @@
 	<section>
 		<div class="container">
 			<div class="row">
-				<div class="col-sm-3">
-					<div class="left-sidebar">
-						<h2>Category</h2>
-						<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#lamps">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Lamps
-										</a>
-									</h4>
-								</div>
-								<div id="lamps" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#chairs">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Chairs
-										</a>
-									</h4>
-								</div>
-								<div id="chairs" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
-										</ul>
-									</div>
-								</div>
-							</div>
-							
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#sofas">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Sofas
-										</a>
-									</h4>
-								</div>
-								<div id="sofas" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
-										</ul>
-									</div>
-								</div>
-
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#bookcases">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Bookcases
-										</a>
-									</h4>
-								</div>
-								<div id="bookcases" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#tables">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Tables
-										</a>
-									</h4>
-								</div>
-								<div id="tables" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<h4 class="panel-title">
-										<a data-toggle="collapse" data-parent="#accordian" href="#dressers">
-											<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-											Dressers
-										</a>
-									</h4>
-								</div>
-								<div id="dressers" class="panel-collapse collapse">
-									<div class="panel-body">
-										<ul>
-											<li><a href="#">Vintage</a></li>
-											<li><a href="#">Rustic</a></li>
-											<li><a href="#">Modern</a></li>
-										</ul>
-									</div>
-								</div>
-								
-							</div>
-							
-						</div><!--/category-products-->
-					
-							<div class="brands_products"><!--brands_products-->
-							<h2>Collections</h2>
-							<div class="brands-name">
-								<ul class="nav nav-pills nav-stacked">
-									<li><a href="#"> <span class="pull-right">(20)</span>Vintage Collection</a></li>
-									<li><a href="#"> <span class="pull-right">(20)</span>Rustic Collection</a></li>
-									<li><a href="#"> <span class="pull-right">(20)</span>Modern Collection</a></li>
-								</ul>
-							</div>
-						</div><!--/brands_products-->
-						
-						<div class="price-range"><!--price-range-->
-							<h2>Price Range</h2>
-							<div class="well text-center">
-								 <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="5000" data-slider-step="5" data-slider-value="[250,450]" id="sl2" ><br />
-								 <b class="pull-left">$ 0</b> <b class="pull-right">$ 5,000</b>
-							</div>
-						</div><!--/price-range-->
-						
-						<div class="shipping text-center"><!--shipping-->
-							<img src="images/home/shipping.jpg" alt="" />
-						</div><!--/shipping-->
-						
-					</div>
+				<div class="col-sm-3"><!-- sidebar container -->
+					<?php include("sidebar.php"); ?>
 				</div>
 				
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
 							<div class="view-product">
-								<img src="images/home/RusticLamp3.jpg" alt="" />
+								<img src=<?php echo "\"$product_details->image_tn\""; ?> alt=<?php echo "\"$product_details->name\""; ?> />
 								<h3>ZOOM</h3>
 							</div>
-							<div id="similar-product" class="carousel slide" data-ride="carousel">
+							<!-- Commenting out "similar-product", seems redundant with recommended products at bottom of page -->
+							<!-- <div id="similar-product" class="carousel slide" data-ride="carousel">
 								
-								  <!-- Wrapper for slides -->
+								  <!-- Wrapper for slides >
 								    <div class="carousel-inner">
 										<div class="item active">
 										  <a href=""><img src="images/home/thumbnails/ModernLamp1.jpg" alt=""></a>
@@ -212,24 +76,24 @@
 										
 									</div>
 
-								  <!-- Controls -->
+								  <!-- Controls >
 								  <a class="left item-control" href="#similar-product" data-slide="prev">
 									<i class="fa fa-angle-left"></i>
 								  </a>
 								  <a class="right item-control" href="#similar-product" data-slide="next">
 									<i class="fa fa-angle-right"></i>
 								  </a>
-							</div>
+							</div> -->
 
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
-								<h2>Rustic Lamp</h2>
-								<p>SKU: 1089772</p>
+								<h2><?php echo "$product_details->name"; ?></h2>
+								<p>SKU: <?php echo "$product_details->sku"; ?></p>
 								<img src="images/product-details/rating.png" alt="" />
 								<span>
-									<span>US $99</span>
+									<span>US $<?php echo "$product_details->price"; ?></span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
 									<button type="button" class="btn btn-fefault cart">
@@ -237,9 +101,13 @@
 										Add to cart
 									</button>
 								</span>
-								<p><b>Availability:</b> In Stock</p>
-								<p><b>Condition:</b> New</p>
-								<p><b>Brand:</b> GreenHouse</p>
+								<p><b>Height</b> <?php echo "$product_details->height"; ?>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Width</b> <?php echo "$product_details->width"; ?>''</p>
+								<p><b>Depth</b> <?php echo "$product_details->depth"; ?>''&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Weight</b> <?php echo "$product_details->weight"; ?>lbs.</p>
+								<p><b>Collection:</b><?php echo "$product_details->collection"; ?></p>
+								<p>
+									<b>Description</b><br>
+									<?php echo "$product_details->description"; ?>
+								</p>
 								<a href=""><img src="images/product-details/share.png" class="share img-responsive"  alt="" /></a>
 							</div><!--/product-information-->
 						</div>
@@ -395,3 +263,6 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+<?php
+$mysqli->close();
+?>

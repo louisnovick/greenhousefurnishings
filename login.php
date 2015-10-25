@@ -108,3 +108,6 @@
     <script src="js/main.js"></script>
 </body>
 </html>
+<?php
+$mysqli->close();
+?>
