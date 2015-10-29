@@ -9,7 +9,7 @@
 						</div>
 					</div>
 					<div class="col-sm-7">
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
@@ -19,12 +19,12 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>John Doe</p>
-								<h2>Developer</h2>
+								<p>Darline Bencomse</p>
+								<h2>Back End Developer</h2>
 							</div>
 						</div>
 						
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
@@ -34,12 +34,12 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Peter Smith</p>
-								<h2>Designer</h2>
+								<p>Andrew Burdett</p>
+								<h2>Back End Developer</h2>
 							</div>
 						</div>
 						
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
@@ -49,12 +49,12 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Jane Doe</p>
-								<h2>Merketing</h2>
+								<p>Weston Chapman</p>
+								<h2>Front End Designer</h2>
 							</div>
 						</div>
 						
-						<div class="col-sm-3">
+						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<a href="#">
 									<div class="iframe-img">
@@ -64,10 +64,38 @@
 										<i class="fa fa-play-circle-o"></i>
 									</div>
 								</a>
-								<p>Janet Smith</p>
-								<h2>Finance</h2>
+								<p>Amber Davis</p>
+								<h2>Front End Designer</h2>
 							</div>
 						</div>
+						<div class="col-sm-2">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe1.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Keven Ledee</p>
+								<h2>Front End Developer</h2>
+							</div>
+						</div>
+						<div class="col-sm-2">
+							<div class="video-gallery text-center">
+								<a href="#">
+									<div class="iframe-img">
+										<img src="images/home/iframe1.png" alt="" />
+									</div>
+									<div class="overlay-icon">
+										<i class="fa fa-play-circle-o"></i>
+									</div>
+								</a>
+								<p>Louis Novick</p>
+								<h2>Group Leader</h2>
+							</div>
+						</div>												
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
