@@ -5,6 +5,8 @@
 
 	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
 
+		/*Login query and database retrival. Setting session variables to hold databse information.*/
+
 		$user_query = "SELECT * FROM users";
 		$user_result = $mysqli->query($user_query);
 		if($mysqli->error) {
@@ -21,7 +23,7 @@
 				$_SESSION['logged_in_user_email'] = $row->email;
 				$_SESSION['logged_in_user_address'] = $row->shippingAddress;
 			} else {
-
+				$failed_login = true;
 			}
 		}	
 	}
@@ -69,6 +71,11 @@
 						<form action="login.php" method="post">
 							<input name="username" id="username" type="text" placeholder="Username" />
 							<input name="password" id="password" type="password" placeholder="Password" />
+							<?php  
+								if ($failed_login = true) {
+									echo "<span style=\"color:red;\">Wrong Username or Password</span><br>";
+								} else {}
+							?>
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
@@ -83,10 +90,9 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
+						<form action="login.php" method="post">
+							<input type="email" placeholder="Email Address" name="signup_email" id="signup_email"/>
+							<input type="password" placeholder="Password" name="signup_password" id="signup_password" />
 							<button type="submit" class="btn btn-default">Signup</button>
 						</form>
 					</div><!--/sign up form-->
