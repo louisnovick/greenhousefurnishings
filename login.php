@@ -3,6 +3,8 @@
 
 	include("db_connect.php");
 
+	$failed_login = false;
+
 	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
 
 		/*Login query and database retrival. Setting session variables to hold databse information.*/
@@ -22,8 +24,10 @@
 				$_SESSION['logged_in_user_ln'] = $row->lName;
 				$_SESSION['logged_in_user_email'] = $row->email;
 				$_SESSION['logged_in_user_address'] = $row->shippingAddress;
-			} else {
+			} else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
 				$failed_login = true;
+			} else {
+				$failed_login = false;
 			}
 		}	
 	}
@@ -72,9 +76,9 @@
 							<input name="username" id="username" type="text" placeholder="Username" />
 							<input name="password" id="password" type="password" placeholder="Password" />
 							<?php  
-								if ($failed_login = true) {
+								if (isset($_POST['submit'])) {
 									echo "<span style=\"color:red;\">Wrong Username or Password</span><br>";
-								} else {}
+								}
 							?>
 							<span>
 								<input type="checkbox" class="checkbox"> 
@@ -90,9 +94,9 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form action="login.php" method="post">
-							<input type="email" placeholder="Email Address" name="signup_email" id="signup_email"/>
-							<input type="password" placeholder="Password" name="signup_password" id="signup_password" />
+						<form action="login_complete.php" method="post">
+							<input type="text" placeholder="New Username" name="new_username" id="new_username"/>
+							<input type="email" placeholder="Email" name="new_email" id="new_email" />
 							<button type="submit" class="btn btn-default">Signup</button>
 						</form>
 					</div><!--/sign up form-->
