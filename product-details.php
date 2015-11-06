@@ -6,10 +6,11 @@
     if (isset($_GET['productID'])) {
     	
     	$select_product_query = "SELECT * FROM products WHERE productID = '".$_GET['productID']."'";
-
     	$select_product_result = $mysqli->query($select_product_query);
-
     	$product_details = $select_product_result->fetch_object();
+
+    	$select_rating_query = "SELECT *, date_format(date, '%W %m/%d/%Y %l:%i %p') date FROM ratings WHERE productID = '".$_GET['productID']."'";
+    	$select_rating_result = $mysqli->query($select_rating_query);
 
     } else {
     	header("Location: shop.php");
@@ -58,33 +59,6 @@
 								<img src=<?php echo "\"$product_details->image_tn\""; ?> alt=<?php echo "\"$product_details->name\""; ?> />
 								<h3>ZOOM</h3>
 							</div>
-							<!-- Commenting out "similar-product", seems redundant with recommended products at bottom of page -->
-							<!-- <div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides >
-								    <div class="carousel-inner">
-										<div class="item active">
-										  <a href=""><img src="images/home/thumbnails/ModernLamp1.jpg" alt=""></a>
-										
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/home/thumbnails/ModernLamp2.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/home/thumbnails/ModernLamp3.jpg" alt=""></a>
-										</div>
-										
-									</div>
-
-								  <!-- Controls >
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
-							</div> -->
-
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
@@ -116,25 +90,13 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li><a href="#details" data-toggle="tab">Product Details</a></li>
 								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+								<li><a href="#add_review" data-toggle="tab">Add a Review</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
-							<div class="tab-pane fade" id="details" >
-									<h2>Rustic Lamp</h2>
-									<p>This elegant Rustic Lamp will brighten any space.  Made with only eco-friendly wood, this piece will surely be a warm addition to your living area.</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-							
-							<div class="tab-pane fade active in" id="reviews" >
+							<div class="tab-pane fade" id="add_review" >
 								<div class="col-sm-12">
-									<ul>
-										<li><a href=""><i class="fa fa-user"></i>Keven</a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>9:41 PM</a></li>
-										<li><a href=""><i class="fa fa-calendar-o"></i>05 OCT 2015</a></li>
-									</ul>
-									<p>I Love this lamp! it was a bit on the expensive side at first, but when I saw the craftmanship and quality I knew it was worth it completely. I definitely recomend this to any one that is eco-friendly and stilish!</p>
 									<p><b>Write Your Review</b></p>
 									
 									<form action="#">
@@ -149,6 +111,22 @@
 										</button>
 									</form>
 								</div>
+							</div>
+							
+							<div class="tab-pane fade active in" id="reviews" >
+								<div class="col-sm-12">
+								<?php
+									while ($row = $select_rating_result->fetch_object()) {
+								?>
+									<ul>
+										<li><a href=""><i class="fa fa-user"></i><?php print($row->username) ?></a></li>
+										<li><a href=""><i class="fa fa-clock-o"></i><?php print($row->date) ?></a></li>
+									</ul>
+									<p><?php print($row->comment) ?></p>
+								</div>
+								<?php
+									}
+								?>
 							</div>
 							
 						</div>
