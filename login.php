@@ -1,4 +1,5 @@
 <?php
+
 	session_start();
 
 	include("db_connect.php");
@@ -16,14 +17,13 @@
 		}
 
 		while($row = $user_result->fetch_object()) {
-			if((($_POST['username']) == ($row->username)) && ($_POST['password'] == ($row->password))) {
+			if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
 				$_SESSION['logged_in'] = true;
 				$_SESSION['logged_in_user'] = $row->username;
 				$_SESSION['logged_in_user_access'] = $row->userAccess;
 				$_SESSION['logged_in_user_fn'] = $row->fName;
 				$_SESSION['logged_in_user_ln'] = $row->lName;
 				$_SESSION['logged_in_user_email'] = $row->email;
-				$_SESSION['logged_in_user_address'] = $row->shippingAddress;
 			} else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
 				$failed_login = true;
 			} else {
@@ -52,6 +52,7 @@
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/andrew_style.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -77,7 +78,7 @@
 							<input name="password" id="password" type="password" placeholder="Password" />
 							<?php  
 								if (isset($_POST['submit'])) {
-									echo "<span style=\"color:red;\">Wrong Username or Password</span><br>";
+									echo "<span class=\"error\">Wrong Username or Password</span><br>";
 								}
 							?>
 							<span>
