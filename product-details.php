@@ -12,8 +12,17 @@
     	$select_rating_query = "SELECT *, date_format(date, '%W %m/%d/%Y %l:%i %p') date FROM ratings WHERE productID = '".$_GET['productID']."'";
     	$select_rating_result = $mysqli->query($select_rating_query);
 
-    } else {
-    	header("Location: shop.php");
+    } else {    }
+
+    if (isset($_POST['rating_submit']) && isset($_SESSION['logged_in'])) {
+    	$add_review_query = "INSERT INTO ratings (productID, rating, comment, username)
+    							VALUES ('".$_GET['productID']."', '".$_POST['rating']."', '".$_POST['comment']."', '".$_SESSION['logged_in_user']."')";
+
+    	$add_review = $mysqli->query($add_review_query);
+
+    	unset($_POST['rating_submit']);
+    	
+    	header('Location: product-details.php?productID='.print($_GET['productID']).'');
     }
 ?>
 <!DOCTYPE html>
@@ -90,26 +99,39 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (<?php print(count($select_rating_result)); ?>)</a></li>
 								<li><a href="#add_review" data-toggle="tab">Add a Review</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
 							<div class="tab-pane fade" id="add_review" >
+									<?php
+										if (isset($_SESSION['logged_in'])) {
+									?>
 								<div class="col-sm-12">
 									<p><b>Write Your Review</b></p>
 									
-									<form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
-										<textarea name="" ></textarea>
-										<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-										<button type="button" class="btn btn-default pull-right">
+									<form action="product-details.php?productID=<?php print($_GET['productID']); ?>" method="post">
+										<select name="rating" id="rating">
+											<option value="5">5</option>
+											<option value="4">4</option>
+											<option value="3">3</option>
+											<option value="2">2</option>
+											<option value="1">1</option>
+										</select>
+										<textarea name="comment" id="rating"></textarea>
+										<button type="submit" class="btn btn-default pull-right" name="rating_submit" id="rating_submit">
 											Submit
 										</button>
 									</form>
+									<?php 
+										} else {
+									?>
+									<p><b>Sorry, but you must be logged in to leave a review.</b></p><br>
+									<a href="login.php">Login</a>
+									<?php
+										}
+									?>
 								</div>
 							</div>
 							
