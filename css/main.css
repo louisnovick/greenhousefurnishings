@@ -2521,3 +2521,82 @@ h2.title {
 }
 
 
+/*************************
+*******Admin CSS******
+**************************/
+
+
+.money{
+  font-weight:bold;
+}
+
+.sorting, .sorting_asc, .sorting_desc {
+    background : none;
+}
+
+
+
+#table-container{
+  overflow: auto;
+}
+
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+
+
+.btn.btn-primary{
+  margin-top:0px !important;
+}
+
+#ajax-loader{
+    position: absolute;
+    left: 45%;
+    top: 2.5%;
+    display:none;
+}
+
+.div-desc{
+  word-wrap: normal !important;
+}
+
+@media (max-width: 768px) { /* use the max to specify at each container level */
+    .row_desc {    
+        width:360px;  /* adjust to desired wrapping */
+        display:table;
+        white-space: pre-wrap; /* css-3 */
+        white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+        white-space: -pre-wrap; /* Opera 4-6 */
+        white-space: -o-pre-wrap; /* Opera 7 */
+        word-wrap: break-word; /* Internet Explorer 5.5+ */
+    }
+}
+
+.dat-bottom{
+  margin-bottom:10px;
+}
+
+.dat-top{
+  margin-top:15px;
+}
