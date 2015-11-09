@@ -13,7 +13,7 @@
         echo "<td class='money'>$" . $row["cost"] . "</td>";
         echo "<td class='money'>$" . $row["price"] . "</td>";
         echo "<td>" . $row["stock"] . "</td>";
-        echo "<td class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='" . $row["productID"] . "' onclick='ProductInfoCallback(this.value)'>Edit</button></td>";
+        if ($_SESSION["logged_in_user_access"] == "administrative") echo "<td class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='" . $row["productID"] . "' onclick='ProductInfoCallback(this.value)'>Edit</button></td>";
         echo "</tr>";
 	}
  	/* free result set */

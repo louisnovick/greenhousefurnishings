@@ -2,7 +2,6 @@
 	session_start();
 
 	include("db_connect.php");
-
 	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
 
 		$user_query = "SELECT * FROM users";

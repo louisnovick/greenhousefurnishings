@@ -1,14 +1,13 @@
-﻿
+
 /*************************
 *******Typography******
 **************************/
-@import url(http://fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
-@import url(http://fonts.googleapis.com/css?family=Abel);
+@import url(//fonts.googleapis.com/css?family=Roboto:400,300,400italic,500,700,100);
+@import url(//fonts.googleapis.com/css?family=Open+Sans:400,800,300,600,700);
+@import url(//fonts.googleapis.com/css?family=Abel);
 
 body {
   font-family: 'Roboto', sans-serif;
-  background:;
   position: relative;
   font-weight:400px;
 }
@@ -1900,15 +1899,34 @@ h2.title {
 
 
 .shopper-info > form > input, 
-.form-two > form > select, 
-.form-two > form > input, 
-.form-one > form > input {
+form > .form-two > select, 
+form > .form-one  > input, 
+form > .form-two  > input {
   background:#F0F0E9;
   border: 0 none;
   margin-bottom:10px;
   padding: 10px;
   width: 100%;
   font-weight: 300
+}
+
+input{
+  background:#F0F0E9;
+  border: 0 none;
+  margin-bottom:10px;
+  padding: 10px;
+  width: 100%;
+  font-weight: 300;
+}
+
+select{
+  margin-bottom:10px;
+}
+
+#billing-submit{
+  position:relative;
+  top:75px;
+  left:250%;
 }
 
 .form-two > form > select {
@@ -2599,4 +2617,11 @@ input[readonly] {
 
 .dat-top{
   margin-top:15px;
+}
+
+#edit-user-btn{
+  margin-top:0px;
+  margin-left:20%;
+  line-height:9px;
+  font-size:13px;
 }

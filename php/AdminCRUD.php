@@ -94,12 +94,23 @@
             			</div>
             		</div>
             		<div class="row">
-            			<div class="col-sm-12">
-            				<label for="image">Image:</label>
+            			<div class="col-sm-6">
+            				<label for="image">Full-Size Image:</label>
             				<div class="input-group">
             	                <span class="input-group-btn">
             	                    <span class="btn btn-primary btn-file">
-            	                        Browse&hellip; <input type="file" multiple>
+            	                        Browse&hellip; <input type="file" id="imageFS" onchange="StoreFile(this)">
+            	                    </span>
+            	                </span>
+            	                <input type="text" class="form-control" readonly>
+            	            </div>
+            			</div>
+            			<div class="col-sm-6">
+            				<label for="image">Thumbnail Image:</label>
+            				<div class="input-group">
+            	                <span class="input-group-btn">
+            	                    <span class="btn btn-primary btn-file">
+            	                        Browse&hellip; <input type="file" id="imageTN" onchange="StoreFile(this)">
             	                    </span>
             	                </span>
             	                <input type="text" class="form-control" readonly>
@@ -202,15 +213,26 @@
         			</div>
         		</div>
         		<div class="row">
-        			<div class="col-sm-12">
-        				<label for="image">Image:</label>
+        			<div class="col-sm-6">
+        				<label for="image">Full-Size Image:</label>
         				<div class="input-group">
         	                <span class="input-group-btn">
         	                    <span class="btn btn-primary btn-file">
-        	                        Browse&hellip; <input type="file" multiple>
+        	                        Browse&hellip; <input type="file" id="imageFS" onchange="StoreFile(this)">
         	                    </span>
         	                </span>
         	                <input type="text" class="form-control" readonly>
+        	            </div>
+        			</div>
+        			<div class="col-sm-6">
+        				<label for="image">Thumbnail Image:</label>
+        				<div class="input-group">
+        	                <span class="input-group-btn">
+                                <span class="btn btn-primary btn-file">
+                                    Browse&hellip; <input type="file" id="imageTN" onchange="StoreFile(this)">
+                                </span>
+                            </span>
+                            <input type="text" class="form-control" readonly>
         	            </div>
         			</div>
         		</div>
@@ -316,33 +338,58 @@
         //all of the actual updating/deleting goes here (checking for 'mode')
         if($_POST["mode"] == "product_edit"){
             include('../db_connect.php');
-            $q = "update products set 
-                    sku='".$_POST["sku"]."', 
-                    price='".$_POST["price"]."', 
-                    name='".$_POST["name"]."', 
-                    description='".$_POST["desc"]."', 
-                    width='".$_POST["width"]."', 
-                    height='".$_POST["height"]."', 
-                    depth='".$_POST["depth"]."', 
-                    weight='".$_POST["weight"]."', 
-                    type='".$_POST["type"]."', 
-                    collection='".$_POST["col"]."', 
-                    stock='".$_POST["stock"]."', 
-                    cost='".$_POST["cost"]."'
-                 where productID = '".$_POST["id"]."'";
-            $result = $mysqli->query($q);
-            if(!$result){
-                //echo "Unable to edit product at this time. Please try again later.";
-                echo mysql_error($result);
+            if(!$_FILES){
+                $q = "update products set 
+                        sku='".$_POST["sku"]."', 
+                        price='".$_POST["price"]."', 
+                        name='".$_POST["name"]."', 
+                        description='".$_POST["desc"]."', 
+                        width='".$_POST["width"]."', 
+                        height='".$_POST["height"]."', 
+                        depth='".$_POST["depth"]."', 
+                        weight='".$_POST["weight"]."', 
+                        type='".$_POST["type"]."', 
+                        collection='".$_POST["col"]."', 
+                        stock='".$_POST["stock"]."', 
+                        cost='".$_POST["cost"]."'
+                     where productID = '".$_POST["id"]."'";
             }
+            else{
+                move_uploaded_file($_FILES['imageFS']['tmp_name'], '../images/fullsize/' .$_POST["type"]."s/" . $_FILES['imageFS']['name']);
+                move_uploaded_file($_FILES['imageTN']['tmp_name'], '../images/thumbnails/' .$_POST["type"]."s/" . $_FILES['imageTN']['name']);
+
+                $q = "update products set 
+                        sku='".$_POST["sku"]."', 
+                        price='".$_POST["price"]."', 
+                        name='".$_POST["name"]."', 
+                        description='".$_POST["desc"]."', 
+                        width='".$_POST["width"]."', 
+                        height='".$_POST["height"]."', 
+                        depth='".$_POST["depth"]."', 
+                        weight='".$_POST["weight"]."', 
+                        type='".$_POST["type"]."', 
+                        collection='".$_POST["col"]."', 
+                        stock='".$_POST["stock"]."', 
+                        cost='".$_POST["cost"]."',
+                        image_tn='images/thumbnails/".$_POST["type"]."s/".$_POST["imageTNName"]."',
+                        image_fs='images/fullsize/".$_POST["type"]."s/".$_POST["imageFSName"]."'
+                     where productID = '".$_POST["id"]."'";
+            }
+            $result = $mysqli->query($q)
+            or die($q."<br/><br/>".mysql_error());
+            
         }
         else if ($_POST["mode"]=="product_new"){
             include('../db_connect.php');
+            if($_FILES){
+                move_uploaded_file($_FILES['imageFS']['tmp_name'], '../images/fullsize/' .$_POST["type"]."s/" . $_FILES['imageFS']['name']);
+                move_uploaded_file($_FILES['imageTN']['tmp_name'], '../images/thumbnails/' .$_POST["type"]."s/" . $_FILES['imageTN']['name']);
+            }
             $q = "insert into products (sku, price, name, description, width, 
-                  height, depth, weight, type, collection, stock, cost, feature)
+                  height, depth, weight, type, collection, stock, cost, feature, image_tn, image_fs)
                   VALUES ('"
                     .$_POST["sku"]."','"
-                    .$_POST["price"].",'"
+                    .$_POST["price"]."','"
                     .$_POST["name"]."','"
                     .$_POST["desc"]."','"
                     .$_POST["width"]."','"
@@ -352,12 +399,15 @@
                     .$_POST["type"]."','"
                     .$_POST["col"]."','"
                     .$_POST["stock"]."','"
-                    .$_POST["cost"]."','
-                    0'
+                    .$_POST["cost"]."','0',
+                    'images/thumbnails/" .$_POST["type"]."s/" .$_POST["imageTNName"]."',
+                    'images/fullsize/" .$_POST["type"]."s/" .$_POST["imageFSName"]."'
                   )";
             $result = $mysqli->query($q);
             if(!$result){
-                echo "Unable to add new product at this time.\n\nPlease try again later.";
+                //echo "Unable to add new product at this time.\n\nPlease try again later.";
+                $result = $mysqli->query($q)
+                or die($q."<br/><br/>".mysql_error());
             }
         }
         else if($_POST["mode"] == "user-edit"){
