@@ -15,6 +15,7 @@
     } else {    }
 
     if (isset($_POST['rating_submit']) && isset($_SESSION['logged_in'])) {
+
     	$add_review_query = "INSERT INTO ratings (productID, rating, comment, username)
     							VALUES ('".$_GET['productID']."', '".$_POST['rating']."', '".$_POST['comment']."', '".$_SESSION['logged_in_user']."')";
 
@@ -22,8 +23,17 @@
 
     	unset($_POST['rating_submit']);
     	
-    	header('Location: product-details.php?productID='.print($_GET['productID']).'');
+    	header('Location: product-details.php?productID='.$_GET['productID']);
     }
+
+    if (isset($_GET['ratingID'])) {
+
+    	$set_comment_to_inactive_query = "UPDATE ratings SET active='2' WHERE ratingID='".$_GET['ratingID']."'";
+    	$mysqli->query($set_comment_to_inactive_query);
+
+       	header('Location: product-details.php?productID='.$_GET['productID']);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -74,7 +84,6 @@
 								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo "$product_details->name"; ?></h2>
 								<p>SKU: <?php echo "$product_details->sku"; ?></p>
-								<img src="images/product-details/rating.png" alt="" />
 								<span>
 									<span>US $<?php echo "$product_details->price"; ?></span>
 									<label>Quantity:</label>
@@ -99,7 +108,7 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (<?php print(count($select_rating_result)); ?>)</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
 								<li><a href="#add_review" data-toggle="tab">Add a Review</a></li>
 							</ul>
 						</div>
@@ -124,29 +133,42 @@
 											Submit
 										</button>
 									</form>
+								</div>
+							</div>
 									<?php 
 										} else {
 									?>
+								<div class="col-sm-12">	
 									<p><b>Sorry, but you must be logged in to leave a review.</b></p><br>
 									<a href="login.php">Login</a>
+								</div>
+							</div>
 									<?php
 										}
 									?>
-								</div>
-							</div>
 							
 							<div class="tab-pane fade active in" id="reviews" >
-								<div class="col-sm-12">
 								<?php
 									while ($row = $select_rating_result->fetch_object()) {
+										if ($row->active == 1) {
 								?>
+								<div class="col-sm-12">
 									<ul>
 										<li><a href=""><i class="fa fa-user"></i><?php print($row->username) ?></a></li>
 										<li><a href=""><i class="fa fa-clock-o"></i><?php print($row->date) ?></a></li>
+										<li><a href=""><?php print($row->rating) ?>/5</a></li>
+										<?php 
+											if ($row->username == $_SESSION['logged_in_user']) {
+										?>
+										<li><a href="product-details.php?productID=<?php print($_GET['productID']); ?>&ratingID=<?php print($row->ratingID) ?>">delete</a></li>
+										<?php
+											}
+										?>
 									</ul>
 									<p><?php print($row->comment) ?></p>
 								</div>
 								<?php
+										}
 									}
 								?>
 							</div>

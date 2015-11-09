@@ -14,6 +14,11 @@
 	    						  FROM products 
 	    						  WHERE collection = '".$_GET['collection']."'";
 	    $select_products_result = $mysqli->query($select_products_query);
+	} else if (isset($_GET['type'])) {
+		$select_products_query = "SELECT * 
+	    						  FROM products 
+	    						  WHERE type = '".$_GET['type']."'";
+	    $select_products_result = $mysqli->query($select_products_query);
 	} else {
 		$select_products_query = "SELECT * 
 								  FROM products 
