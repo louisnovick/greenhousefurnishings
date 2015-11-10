@@ -3,8 +3,23 @@
 
     include("db_connect.php");
 
+    $action = isset($_GET['action']) ? $_GET['action'] : "";
+    $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : "1";
+    $name = isset($_GET['name']) ? $_GET['name'] : "";
+    if($action=='added'){
+      echo "<div class='alert alert-info'>";
+          echo "<strong>{$name}</strong> was added to your cart!";
+      echo "</div>";
+    }
+
+    if($action=='exists'){
+      echo "<div class='alert alert-info'>";
+          echo "<strong>{$name}</strong> already exists in your cart!";
+      echo "</div>";
+    }
+
     if (isset($_GET['productID'])) {
-    	
+
     	$select_product_query = "SELECT * FROM products WHERE productID = '".$_GET['productID']."'";
 
     	$select_product_result = $mysqli->query($select_product_query);
@@ -33,7 +48,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -43,14 +58,14 @@
 
 <body>
 	<?php include("header.php"); ?>
-	
+
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3"><!-- sidebar container -->
 					<?php include("sidebar.php"); ?>
 				</div>
-				
+
 				<div class="col-sm-9 padding-right">
 					<div class="product-details"><!--product-details-->
 						<div class="col-sm-5">
@@ -60,12 +75,12 @@
 							</div>
 							<!-- Commenting out "similar-product", seems redundant with recommended products at bottom of page -->
 							<!-- <div id="similar-product" class="carousel slide" data-ride="carousel">
-								
+
 								  <!-- Wrapper for slides >
 								    <div class="carousel-inner">
 										<div class="item active">
 										  <a href=""><img src="images/home/thumbnails/ModernLamp1.jpg" alt=""></a>
-										
+
 										</div>
 										<div class="item">
 										  <a href=""><img src="images/home/thumbnails/ModernLamp2.jpg" alt=""></a>
@@ -73,7 +88,7 @@
 										<div class="item">
 										  <a href=""><img src="images/home/thumbnails/ModernLamp3.jpg" alt=""></a>
 										</div>
-										
+
 									</div>
 
 								  <!-- Controls >
@@ -96,10 +111,7 @@
 									<span>US $<?php echo "$product_details->price"; ?></span>
 									<label>Quantity:</label>
 									<input type="text" value="3" />
-									<button type="button" class="btn btn-fefault cart">
-										<i class="fa fa-shopping-cart"></i>
-										Add to cart
-									</button>
+									<?php echo "<a href='addtocart.php?id=$product_details->productID&name=$product_details->name' class='btn btn-fefault cart'><i class='fa fa-shopping-cart'></i> Add to cart</a>" ?>
 								</span>
 								<p><b>Height</b> <?php echo "$product_details->height"; ?>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Width</b> <?php echo "$product_details->width"; ?>''</p>
 								<p><b>Depth</b> <?php echo "$product_details->depth"; ?>''&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Weight</b> <?php echo "$product_details->weight"; ?>lbs.</p>
@@ -112,7 +124,7 @@
 							</div><!--/product-information-->
 						</div>
 					</div><!--/product-details-->
-					
+
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
@@ -126,7 +138,7 @@
 									<p>This elegant Rustic Lamp will brighten any space.  Made with only eco-friendly wood, this piece will surely be a warm addition to your living area.</p>
 									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
 							</div>
-							
+
 							<div class="tab-pane fade active in" id="reviews" >
 								<div class="col-sm-12">
 									<ul>
@@ -136,7 +148,7 @@
 									</ul>
 									<p>I Love this lamp! it was a bit on the expensive side at first, but when I saw the craftmanship and quality I knew it was worth it completely. I definitely recomend this to any one that is eco-friendly and stilish!</p>
 									<p><b>Write Your Review</b></p>
-									
+
 									<form action="#">
 										<span>
 											<input type="text" placeholder="Your Name"/>
@@ -150,16 +162,16 @@
 									</form>
 								</div>
 							</div>
-							
+
 						</div>
 					</div><!--/category-tab-->
-					
+
 					<div class="recommended_items"><!--recommended_items-->
 						<h2 class="title text-center">recommended items</h2>
-						
+
 						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
 							<div class="carousel-inner">
-								<div class="item active">	
+								<div class="item active">
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
@@ -197,7 +209,7 @@
 										</div>
 									</div>
 								</div>
-								<div class="item">	
+								<div class="item">
 									<div class="col-sm-4">
 										<div class="product-image-wrapper">
 											<div class="single-products">
@@ -241,17 +253,17 @@
 							  </a>
 							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
 								<i class="fa fa-angle-right"></i>
-							  </a>			
+							  </a>
 						</div>
 					</div><!--/recommended_items-->
-					
+
 				</div>
 			</div>
 		</div>
 	</section>
-	
+
 	<?php include("footer.php"); ?>
-	
+
 
 
     <script src="js/jquery.js"></script>
