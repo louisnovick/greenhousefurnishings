@@ -100,7 +100,7 @@
               </td>
               <td class="cart_description">
                 <h4><a href=""><?php echo "$row->name"; ?></a></h4>
-                <p>SKU: <?php echo "$row->productID"; ?></p>
+                <p>SKU: <?php echo "$row->sku"; ?></p>
               </td>
               <td class="cart_price">
                 <p>$<?php echo "$row->price"; ?></p>
@@ -113,7 +113,7 @@
                 </div>
               </td>
               <td class="cart_total">
-                <p class="cart_total_price">$99</p>
+                <p class="cart_total_price">$<?php echo "$row->price"; ?></p>
               </td>
               <td class="cart_delete">
                <?php echo "<a href='removefromcart.php?id=$row->productID&name=$row->name' class='cart_quantity_delete'><i class='fa fa-times'></i></a>"; ?>
