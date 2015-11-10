@@ -31,19 +31,7 @@
 						<div class="logo pull-left">
 							<a href="home.php"><img src="images/home/logo.png" alt="" /></a>
 						</div>
-						<div class="btn-group pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">USA</a></li>
-								</ul>
-							</div>
-							
-						</div>
+						
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -80,7 +68,7 @@
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="home.php">Home</a></li>
 								<li><a href="shop.php">Shop</a></li> 
-								<li><a href="404.php">404</a></li>
+								
 								<li><a href="contact-us.php">Contact</a></li>
 							</ul>
 						</div>
