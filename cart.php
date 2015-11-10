@@ -12,6 +12,12 @@
         echo "</div>";
     }
 
+    if($action=='added'){
+      echo "<div class='alert alert-info'>";
+          echo "<strong>{$name}</strong> was added to your cart!";
+      echo "</div>";
+    }
+
     else if($action=='quantity_updated'){
         echo "<div class='alert alert-info'>";
             echo "<strong>{$name}</strong> quantity was updated!";
