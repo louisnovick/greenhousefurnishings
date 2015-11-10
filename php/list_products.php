@@ -1,3 +1,4 @@
+
 <?php
     //require("db_connect.php");
 	if ($result = $mysqli->query("select * from products order by sku asc")) {
@@ -20,10 +21,3 @@
 	 $result->free();
 	}
 ?>
-
-<script type="text/javascript">
-    var prodTable = $('#admin-table').DataTable({
-		renderer: "bootstrap",
-    	"bAutoWidth": false
-	});
-</script>

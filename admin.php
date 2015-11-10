@@ -191,7 +191,7 @@
 				<div class="row">
 					<div class="col-sm-12">
 					<?php if ($_SESSION["logged_in_user_access"] == "administrative") echo	'<div class="dat-bottom">
-							<button type="button" class="btn btn-default dat-bottom" aria-label="Left Align" data-toggle="modal data-target="#new-product" onclick="NewProductPrep()">
+							<button type="button" class="btn btn-default dat-bottom" aria-label="Left Align" data-toggle="modal" data-target="#new-product" onclick="NewProductPrep()">
 								<span class="glyphicon glyphicon-plus-sign" style="color:#3C763D" aria-hidden="true"></span> Add New Product
 							</button>
 						</div>
@@ -209,7 +209,7 @@
 									<th>Cost</th>
 									<th>Price</th>
 									<th># In Stock</th>
-									<?php if($auth == "a") echo "<th></th>" ?>
+									<?php if($auth == "a") echo "<th></th>"; ?>
 								</tr>
 							</thead>
 							<tbody id="list_products">
@@ -396,6 +396,10 @@
     	}
     }
     
+    function UpdateDataTable(tableRef){
+    	
+    }
+    
     function StoreFile(s){
     	$(s).parent().parent().next().val($(s).prop("files")[0].name);
    	}
@@ -482,10 +486,13 @@
 		        data: form_data,
 		        success: function(data) {
 		        	//close the modal
-		        	$(".close").click();
+		    	$(".close").click();
+		        	prodTable.row.add([
+		        		sku, name, type, desc, col, "<img src='images/thumbnails/"+type+"s/"+imageTNName+"' alt='No Image' />", cost, price, stock, "<span class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='0' onclick='ProductInfoCallback(this.value)'>Edit</button></span>"
+		        	]).draw(true);
+		        },
 		        	//gimme status
 		        	//alert(data);
-		        },
 		        error: function(errorThrown) { 
         			alert(errorThrown); 
     			}       

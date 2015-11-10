@@ -377,7 +377,7 @@
             }
             $result = $mysqli->query($q)
             or die($q."<br/><br/>".mysql_error());
-            
+            echo "prod_update";
         }
         else if ($_POST["mode"]=="product_new"){
             include('../db_connect.php');
@@ -403,12 +403,10 @@
                     'images/thumbnails/" .$_POST["type"]."s/" .$_POST["imageTNName"]."',
                     'images/fullsize/" .$_POST["type"]."s/" .$_POST["imageFSName"]."'
                   )";
-            $result = $mysqli->query($q);
-            if(!$result){
-                //echo "Unable to add new product at this time.\n\nPlease try again later.";
-                $result = $mysqli->query($q)
-                or die($q."<br/><br/>".mysql_error());
-            }
+            $result = $mysqli->query($q) or die($q."<br/><br/>".mysql_error());
+            $result = $mysqli->query("select productID from products order by productID desc limit 1") or die("shit");
+            $value = mysqli_fetch_field($result);
+            echo json_encode("prod_add-"+$value);
         }
         else if($_POST["mode"] == "user-edit"){
             include('../db_connect.php');
