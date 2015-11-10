@@ -396,9 +396,9 @@
     	}
     }
     
-    function UpdateDataTable(tableRef){
-    	
-    }
+    String.prototype.capitalizeFirstLetter = function() {
+	  return this.charAt(0).toUpperCase() + this.slice(1);
+	}
     
     function StoreFile(s){
     	$(s).parent().parent().next().val($(s).prop("files")[0].name);
@@ -488,7 +488,7 @@
 		        	//close the modal
 		    	$(".close").click();
 		        	prodTable.row.add([
-		        		sku, name, type, desc, col, "<img src='images/thumbnails/"+type+"s/"+imageTNName+"' alt='No Image' />", cost, price, stock, "<span class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='0' onclick='ProductInfoCallback(this.value)'>Edit</button></span>"
+		        		sku, name, type.capitalizeFirstLetter(), desc, col, "<img src='images/thumbnails/"+type+"s/"+imageTNName+"' alt='No Image' />", cost, price, stock, "<span class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='0' onclick='ProductInfoCallback(this.value)'>Edit</button></span>"
 		        	]).draw(true);
 		        },
 		        	//gimme status
