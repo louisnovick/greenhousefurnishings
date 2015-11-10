@@ -2625,3 +2625,8 @@ input[readonly] {
   line-height:9px;
   font-size:13px;
 }
+
+.nav-tabs li a{
+  color:#397D02;
+  font-weight: bold;
+}

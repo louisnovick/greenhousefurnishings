@@ -146,9 +146,11 @@
 		</div> <!-- end modal -->
 	</div>
 	
+	
 
 	<section id="admin-main">
 		<div class="container">
+			<h2 class="title text-center">Administration Back-Office</h2>
 			<ul class="nav nav-tabs">
 			  <li class="active"><a data-toggle="tab" href="#products">Products</a></li>
 			  <li><a data-toggle="tab" href="#users">Users</a></li>
@@ -188,13 +190,13 @@
 				<hr>
 				<div class="row">
 					<div class="col-sm-12">
-						<div class="dat-bottom">
-							<button type="button" class="btn btn-default dat-bottom" aria-label="Left Align" data-toggle='modal' data-target='#new-product' onclick="NewProductPrep()">
+					<?php if ($_SESSION["logged_in_user_access"] == "administrative") echo	'<div class="dat-bottom">
+							<button type="button" class="btn btn-default dat-bottom" aria-label="Left Align" data-toggle="modal data-target="#new-product" onclick="NewProductPrep()">
 								<span class="glyphicon glyphicon-plus-sign" style="color:#3C763D" aria-hidden="true"></span> Add New Product
 							</button>
 						</div>
-						
-						
+						';
+					?>
 						<table id="admin-table" class="table table-striped table-bordered dt-responsive nowrap">
 							<thead>
 								<tr>
@@ -237,7 +239,7 @@
 									<th>Username</th>
 									<th>Email</th>
 									<th>Access Level</th>
-									<th></th>
+									<?php if($auth == "a") echo "<th></th>"; ?>
 								</tr>
 							</thead>
 							<tbody id="list_users">
@@ -401,6 +403,7 @@
    	$(document).ready(function(){
    		
    		
+   		
    		//$(".div-desc").css("white-space", "normal");
    		$(".submit-btn").click(function(){
    			
@@ -496,7 +499,24 @@
     	var userTable = $("#users-table").DataTable({
     		renderer: "bootstrap",
     		"bAutoWidth": false
-    	})
+    	});
+    	
+    	
+   		//very silly and bad jquery to fix the datatable width for long descriptions.
+   		//i'm unable to remove the nowrap class, which is causing the issue but also
+   		//causing the table to display the correct number of columns in the parent row.
+   		//This jQuery hack sort of gives the illusion that I implemented it properly. Sorry.
+   		$(".sorting_1").each(function(){
+   			$(this).click(function(){
+   				$(".div-desc").css("display", "none");
+   				setTimeout(function(){
+   					$(".div-desc").css("white-space", "normal");
+   					setTimeout(function(){
+   						$(".div-desc").css("display", "");
+   					},1);
+   				},1);	
+   			});
+   		});
    	});
     </script>
 </body>

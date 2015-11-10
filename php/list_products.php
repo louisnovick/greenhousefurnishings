@@ -20,3 +20,10 @@
 	 $result->free();
 	}
 ?>
+
+<script type="text/javascript">
+    var prodTable = $('#admin-table').DataTable({
+		renderer: "bootstrap",
+    	"bAutoWidth": false
+	});
+</script>
