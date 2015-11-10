@@ -14,6 +14,11 @@
 	    						  FROM products 
 	    						  WHERE collection = '".$_GET['collection']."'";
 	    $select_products_result = $mysqli->query($select_products_query);
+	} else if (isset($_GET['type'])) {
+		$select_products_query = "SELECT * 
+	    						  FROM products 
+	    						  WHERE type = '".$_GET['type']."'";
+	    $select_products_result = $mysqli->query($select_products_query);
 	} else {
 		$select_products_query = "SELECT * 
 								  FROM products 
@@ -82,7 +87,7 @@
 							<div class="product-image-wrapper">
 								<div class="single-products">
 									<div class="productinfo text-center">
-										<img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> />
+										<a href="product-details.php?productID=<?php echo "$row->productID" ?>"><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> /></a>
 											<h2>$<?php echo "$row->price"; ?></h2>
 											<p><?php echo "$row->name"; ?></p>
 											<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>

@@ -6,14 +6,34 @@
     if (isset($_GET['productID'])) {
     	
     	$select_product_query = "SELECT * FROM products WHERE productID = '".$_GET['productID']."'";
-
     	$select_product_result = $mysqli->query($select_product_query);
-
     	$product_details = $select_product_result->fetch_object();
 
-    } else {
-    	header("Location: shop.php");
+    	$select_rating_query = "SELECT *, date_format(date, '%W %m/%d/%Y %l:%i %p') date FROM ratings WHERE productID = '".$_GET['productID']."'";
+    	$select_rating_result = $mysqli->query($select_rating_query);
+
+    } else {    }
+
+    if (isset($_POST['rating_submit']) && isset($_SESSION['logged_in'])) {
+
+    	$add_review_query = "INSERT INTO ratings (productID, rating, comment, username)
+    							VALUES ('".$_GET['productID']."', '".$_POST['rating']."', '".$_POST['comment']."', '".$_SESSION['logged_in_user']."')";
+
+    	$add_review = $mysqli->query($add_review_query);
+
+    	unset($_POST['rating_submit']);
+    	
+    	header('Location: product-details.php?productID='.$_GET['productID']);
     }
+
+    if (isset($_GET['ratingID'])) {
+
+    	$set_comment_to_inactive_query = "UPDATE ratings SET active='2' WHERE ratingID='".$_GET['ratingID']."'";
+    	$mysqli->query($set_comment_to_inactive_query);
+
+       	header('Location: product-details.php?productID='.$_GET['productID']);
+    }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,40 +78,11 @@
 								<img src=<?php echo "\"$product_details->image_tn\""; ?> alt=<?php echo "\"$product_details->name\""; ?> />
 								<h3>ZOOM</h3>
 							</div>
-							<!-- Commenting out "similar-product", seems redundant with recommended products at bottom of page -->
-							<!-- <div id="similar-product" class="carousel slide" data-ride="carousel">
-								
-								  <!-- Wrapper for slides >
-								    <div class="carousel-inner">
-										<div class="item active">
-										  <a href=""><img src="images/home/thumbnails/ModernLamp1.jpg" alt=""></a>
-										
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/home/thumbnails/ModernLamp2.jpg" alt=""></a>
-										</div>
-										<div class="item">
-										  <a href=""><img src="images/home/thumbnails/ModernLamp3.jpg" alt=""></a>
-										</div>
-										
-									</div>
-
-								  <!-- Controls >
-								  <a class="left item-control" href="#similar-product" data-slide="prev">
-									<i class="fa fa-angle-left"></i>
-								  </a>
-								  <a class="right item-control" href="#similar-product" data-slide="next">
-									<i class="fa fa-angle-right"></i>
-								  </a>
-							</div> -->
-
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
-								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo "$product_details->name"; ?></h2>
 								<p>SKU: <?php echo "$product_details->sku"; ?></p>
-								<img src="images/product-details/rating.png" alt="" />
 								<span>
 									<span>US $<?php echo "$product_details->price"; ?></span>
 									<label>Quantity:</label>
@@ -116,39 +107,71 @@
 					<div class="category-tab shop-details-tab"><!--category-tab-->
 						<div class="col-sm-12">
 							<ul class="nav nav-tabs">
-								<li><a href="#details" data-toggle="tab">Product Details</a></li>
-								<li class="active"><a href="#reviews" data-toggle="tab">Reviews (5)</a></li>
+								<li class="active"><a href="#reviews" data-toggle="tab">Reviews</a></li>
+								<li><a href="#add_review" data-toggle="tab">Add a Review</a></li>
 							</ul>
 						</div>
 						<div class="tab-content">
-							<div class="tab-pane fade" id="details" >
-									<h2>Rustic Lamp</h2>
-									<p>This elegant Rustic Lamp will brighten any space.  Made with only eco-friendly wood, this piece will surely be a warm addition to your living area.</p>
-									<button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-							</div>
-							
-							<div class="tab-pane fade active in" id="reviews" >
+							<div class="tab-pane fade" id="add_review" >
+									<?php
+										if (isset($_SESSION['logged_in'])) {
+									?>
 								<div class="col-sm-12">
-									<ul>
-										<li><a href=""><i class="fa fa-user"></i>Keven</a></li>
-										<li><a href=""><i class="fa fa-clock-o"></i>9:41 PM</a></li>
-										<li><a href=""><i class="fa fa-calendar-o"></i>05 OCT 2015</a></li>
-									</ul>
-									<p>I Love this lamp! it was a bit on the expensive side at first, but when I saw the craftmanship and quality I knew it was worth it completely. I definitely recomend this to any one that is eco-friendly and stilish!</p>
 									<p><b>Write Your Review</b></p>
 									
-									<form action="#">
-										<span>
-											<input type="text" placeholder="Your Name"/>
-											<input type="email" placeholder="Email Address"/>
-										</span>
-										<textarea name="" ></textarea>
-										<b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-										<button type="button" class="btn btn-default pull-right">
+									<form action="product-details.php?productID=<?php print($_GET['productID']); ?>" method="post">
+										<select name="rating" id="rating">
+											<option value="5">5</option>
+											<option value="4">4</option>
+											<option value="3">3</option>
+											<option value="2">2</option>
+											<option value="1">1</option>
+										</select>
+										<textarea name="comment" id="rating"></textarea>
+										<button type="submit" class="btn btn-default pull-right" name="rating_submit" id="rating_submit">
 											Submit
 										</button>
 									</form>
 								</div>
+							</div>
+									<?php 
+										} else {
+									?>
+								<div class="col-sm-12">	
+									<p><b>Sorry, but you must be logged in to leave a review.</b></p><br>
+									<a href="login.php">Login</a>
+								</div>
+							</div>
+									<?php
+										}
+									?>
+							
+							<div class="tab-pane fade active in" id="reviews" >
+								<?php
+									while ($row = $select_rating_result->fetch_object()) {
+										if ($row->active == 1) {
+								?>
+								<div class="col-sm-12">
+									<ul>
+										<li><a href=""><i class="fa fa-user"></i><?php print($row->username) ?></a></li>
+										<li><a href=""><i class="fa fa-clock-o"></i><?php print($row->date) ?></a></li>
+										<li><a href=""><?php print($row->rating) ?>/5</a></li>
+										<?php
+											if (isset($_SESSION['logged_in_user'])) {
+												if ($row->username == $_SESSION['logged_in_user']) {
+										?>
+										<li><a href="product-details.php?productID=<?php print($_GET['productID']); ?>&ratingID=<?php print($row->ratingID) ?>">Remove</a></li>
+										<?php
+												}
+											} 
+										?>
+									</ul>
+									<p><?php print($row->comment) ?></p>
+								</div>
+								<?php
+										}
+									}
+								?>
 							</div>
 							
 						</div>

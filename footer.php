@@ -126,12 +126,12 @@
 						<div class="single-widget">
 							<h2>Quick Shop</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Lamps</a></li>
-								<li><a href="#">Chairs</a></li>
-								<li><a href="#">Sofas</a></li>
-								<li><a href="#">Bookcases</a></li>
-								<li><a href="#">Tables</a></li>
-								<li><a href="#">Dressers</a></li>
+								<li><a href="shop.php?type=lamp">Lamps</a></li>
+								<li><a href="shop.php?type=chair">Chairs</a></li>
+								<li><a href="shop.php?type=sofa">Sofas</a></li>
+								<li><a href="shop.php?type=bookcase">Bookcases</a></li>
+								<li><a href="shop.php?type=table">Tables</a></li>
+								<li><a href="shop.php?type=dresser">Dressers</a></li>
 							</ul>
 						</div>
 					</div>
