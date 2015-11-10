@@ -81,7 +81,6 @@
 						</div>
 						<div class="col-sm-7">
 							<div class="product-information"><!--/product-information-->
-								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
 								<h2><?php echo "$product_details->name"; ?></h2>
 								<p>SKU: <?php echo "$product_details->sku"; ?></p>
 								<span>
@@ -157,12 +156,14 @@
 										<li><a href=""><i class="fa fa-user"></i><?php print($row->username) ?></a></li>
 										<li><a href=""><i class="fa fa-clock-o"></i><?php print($row->date) ?></a></li>
 										<li><a href=""><?php print($row->rating) ?>/5</a></li>
-										<?php 
-											if ($row->username == $_SESSION['logged_in_user']) {
-										?>
-										<li><a href="product-details.php?productID=<?php print($_GET['productID']); ?>&ratingID=<?php print($row->ratingID) ?>">delete</a></li>
 										<?php
-											}
+											if (isset($_SESSION['logged_in_user'])) {
+												if ($row->username == $_SESSION['logged_in_user']) {
+										?>
+										<li><a href="product-details.php?productID=<?php print($_GET['productID']); ?>&ratingID=<?php print($row->ratingID) ?>">Remove</a></li>
+										<?php
+												}
+											} 
 										?>
 									</ul>
 									<p><?php print($row->comment) ?></p>
