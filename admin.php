@@ -180,7 +180,7 @@
 									<th>Cost</th>
 									<th>Price</th>
 									<th># In Stock</th>
-									<?php if($auth == "a") echo "<th></th>"; ?>
+									<th></th>
 								</tr>
 							</thead>
 							<tbody id="list_products">
