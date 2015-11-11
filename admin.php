@@ -418,6 +418,9 @@
 		    		var imageTNName = $("#imageTN").prop("files")[0].name;
 		    	}
 	    	}
+	    	if($("#feature").is(":checked")) {
+	    		var feature = "1";	
+	    	} else { var feature = "0"; }
 	    	if (mode == "product_edit"){
 	    		id = $("span[id^='productID']").attr("id").split("_")[1];
 	    	}
@@ -438,6 +441,7 @@
 	    	form_data.append('weight', weight);
 	    	form_data.append('stock', stock);
 	    	form_data.append('cost', cost);
+	    	form_data.append('feature', feature);
 	    	form_data.append('fName', fName);
 	    	form_data.append('lName', lName);
 	    	form_data.append('email', email);
@@ -461,6 +465,7 @@
 		        	//close the modal
 		    		//$(".close").click();
 		    		location.reload();
+		    		
 		        	/*prodTable.row.add([
 		        		sku, name, type.capitalizeFirstLetter(), desc, col, "<img src='images/thumbnails/"+type+"s/"+imageTNName+"' alt='No Image' />", cost, price, stock, "<span class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='0' onclick='ProductInfoCallback(this.value)'>Edit</button></span>"
 		        	]).draw(true);*/

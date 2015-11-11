@@ -2630,3 +2630,11 @@ input[readonly] {
   color:#397D02;
   font-weight: bold;
 }
+
+#featurelbl{
+  line-height:2;
+}
+
+#feature{
+  height:20px;
+}

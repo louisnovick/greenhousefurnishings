@@ -5,6 +5,7 @@
         $info = "select * from products where productID = '".$_GET["prod_id"]."'";
         $result = $mysqli->query($info);
         while($row = mysqli_fetch_array($result)){
+            if($row["feature"]) $feature = "checked"; else $feature = "false";
             echo '
             <form action="#" id="edit-form" role="form">
             	<div class="form-group">
@@ -114,6 +115,15 @@
             	                <input type="text" class="form-control" readonly>
             	            </div>
             			</div>
+            		</div>
+            		<div class="row">
+            		<br/>
+            		    <div class="col-sm-1">
+                          <input type="checkbox" ' . $feature .' id="feature">
+            		    </div>
+            		    <div class="col-sm-5">
+            		        <label for="feature" id="featurelbl">Featured Item</label>
+            		    </div>
             		</div>
             	</div>
             </form>
@@ -347,7 +357,8 @@
                         type='".$_POST["type"]."', 
                         collection='".$_POST["col"]."', 
                         stock='".$_POST["stock"]."', 
-                        cost='".$_POST["cost"]."'
+                        cost='".$_POST["cost"]."',
+                        feature='".$_POST["feature"]."'
                      where productID = '".$_POST["id"]."'";
             }
             else{
