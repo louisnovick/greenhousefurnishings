@@ -67,11 +67,11 @@
 					<div class="col-sm-3">
 						<div class="shopper-info">
 							<p>Shopper Information</p>
-							<form>
-								<input type="text" placeholder="Display Name">
-								<input type="text" placeholder="User Name">
-								<input type="password" placeholder="Password">
-								<input type="password" placeholder="Confirm password">
+							<form id="checkout-form">
+								<input type="text" placeholder="Display Name" required />
+								<input type="text" placeholder="User Name" required />
+								<input type="password" placeholder="Password" required />
+								<input type="password" placeholder="Confirm password" required />
 							</form>
 							<a class="btn btn-primary" href="">Get Quotes</a>
 							<a class="btn btn-primary" href="">Continue</a>
@@ -80,37 +80,40 @@
 					<div class="col-sm-5 clearfix">
 						<div class="bill-to">
 							<p>Bill To</p>
-							<div class="form-one">
-								<form>
-									<input type="text" placeholder="Company Name">
-									<input type="text" placeholder="Email*">
-									<input type="text" placeholder="Title">
-									<input type="text" placeholder="First Name *">
-									<input type="text" placeholder="Middle Name">
-									<input type="text" placeholder="Last Name *">
-									<input type="text" placeholder="Address 1 *">
-									<input type="text" placeholder="Address 2">
-								</form>
-							</div>
-							<div class="form-two">
-								<form>
-									<input type="text" placeholder="Zip / Postal Code *">
-									<select>
+							<form id="billing-form">
+								<div class="form-one">
+									<input type="text" placeholder="Company Name" />
+									<input type="email" placeholder="Email *" required />
+									<input type="text" placeholder="Title" />
+									<input type="text" placeholder="First Name *" required />
+									<input type="text" placeholder="Middle Name" />
+									<input type="text" placeholder="Last Name *" required />
+									<input type="text" placeholder="Address 1 *" required />
+									<input type="text" placeholder="Address 2" />
+								</div>
+								<div class="form-two">
+									<input type="text" placeholder="Zip / Postal Code *" pattern="[0-9]{5}" title="Enter a valid 5 digit zip code." required />
+									<select required>
 										<option>-- Country --</option>
 										<option>United States</option>
 										<option>Canada</option>
 									</select>
-									<select>
+									<br/>
+									<select required>
 										<option>-- State / Province / Region --</option>
 										<option>United States</option>
 										<option>Canada</option>
 									</select>
-									<input type="password" placeholder="Confirm password">
-									<input type="text" placeholder="Phone *">
-									<input type="text" placeholder="Mobile Phone">
-									<input type="text" placeholder="Fax">
-								</form>
-							</div>
+									<br/>
+									<input type="password" placeholder="Confirm password" required />
+									<input type="tel" placeholder="Phone *" pattern="^\d{3}-?\d{3}-?\d{4}$" title="Enter a ten digit phone number. XXX-XXX-XXXX" required />
+									<input type="tel" placeholder="Mobile Phone" pattern="^\d{3}-?\d{3}-?\d{4}$" title="Enter a ten digit phone number. XXX-XXX-XXXX" />
+									<input type="tel" placeholder="Fax" pattern="^\d{3}-?\d{3}-?\d{4}$" title="Enter a ten digit phone number. XXX-XXX-XXXX" />
+									<button type="submit" class="btn btn-default get" id="billing-submit">Submit</button>
+								</div>
+						        
+								
+							</form>
 						</div>
 					</div>
 					<div class="col-sm-4">
@@ -242,13 +245,14 @@
 				</table>
 			</div>
 			<div class="payment-options">
-					<span>
-						<label><input type="checkbox"> Credit Card</label>
-					</span>
-					<span>
-						<label><input type="checkbox"> Paypal</label>
-					</span>
-				</div>
+				<span>
+					<label><input type="checkbox"> Credit Card</label>
+				</span>
+				<span>
+					<label><input type="checkbox"> Paypal</label>
+				</span>
+			</div>
+			
 		</div>
 	</section> <!--/#cart_items-->
 
