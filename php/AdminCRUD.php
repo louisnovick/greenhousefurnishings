@@ -19,7 +19,6 @@
             			    <div class="input-group">
             			      <div class="input-group-addon">$</div>
             			      <input type="number" class="form-control" id="price" placeholder="Amount" value="'.$row["price"].'">
-            			      <div class="input-group-addon">.00</div>
             			      </div>
             			</div>
             		</div>
@@ -89,7 +88,6 @@
             			    <div class="input-group">
             			      <div class="input-group-addon">$</div>
             			      <input type="number" class="form-control" id="cost" placeholder="Amount" value="'.$row["cost"].'">
-            			      <div class="input-group-addon">.00</div>
             			    </div>
             			</div>
             		</div>
@@ -138,7 +136,6 @@
         			    <div class="input-group">
         			      <div class="input-group-addon">$</div>
         			      <input type="number" class="form-control" id="price" placeholder="Amount">
-        			      <div class="input-group-addon">.00</div>
         			      </div>
         			</div>
         		</div>
@@ -208,7 +205,6 @@
         			    <div class="input-group">
         			      <div class="input-group-addon">$</div>
         			      <input type="number" class="form-control" id="cost" placeholder="Amount">
-        			      <div class="input-group-addon">.00</div>
         			    </div>
         			</div>
         		</div>

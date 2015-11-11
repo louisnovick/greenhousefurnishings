@@ -160,37 +160,8 @@
 		  <div id="products" class="tab-pane fade in active">
 		    <div class="container">
 				<div class="row">
-					<div class="col-sm-6">
-						<h4>Type Filter</h4>
-						<div class="btn-group" role="group" aria-label="...">
-							<?php
-								while($row = mysqli_fetch_array($result_types)){
-									echo '
-	            						<button type="button" class="btn btn-default type-btn">'.ucfirst($row["type"]).'</button>
-									';
-								}
-							?>
-						</div>
-					</div>
-					<div class="col-sm-6">
-						<div class="pull-right">
-							<h4>Collection Filter</h4>
-							<div class="btn-group" role="group" aria-label="...">
-								<?php
-									while($row = mysqli_fetch_array($result_collections)){
-										echo '
-		            						<button type="button" class="btn btn-default collection-btn">'.ucfirst($row["collection"]).'</button>
-										';
-									}
-								?>
-							</div>
-						</div>
-					</div>
-				</div>
-				<hr>
-				<div class="row">
 					<div class="col-sm-12">
-					<?php if ($_SESSION["logged_in_user_access"] == "administrative") echo	'<div class="dat-bottom">
+					<?php if ($_SESSION["logged_in_user_access"] == "administrative") echo	'<div class="dat-bottom dat-top">
 							<button type="button" class="btn btn-default dat-bottom" aria-label="Left Align" data-toggle="modal" data-target="#new-product" onclick="NewProductPrep()">
 								<span class="glyphicon glyphicon-plus-sign" style="color:#3C763D" aria-hidden="true"></span> Add New Product
 							</button>
@@ -363,6 +334,7 @@
 			        success: function(data) {
 			        	//close the modal
 			        	$(".close").click();
+			        	location.reload();
 			        	//gimme status
 			        	//alert(data);
 			        },
@@ -386,6 +358,7 @@
 			        success: function(data) {
 			        	//close the modal
 			        	$(".close").click();
+			        	location.reload();
 			        	//gimme status
 			        	//alert(data);
 			        },
@@ -486,10 +459,11 @@
 		        data: form_data,
 		        success: function(data) {
 		        	//close the modal
-		    	$(".close").click();
-		        	prodTable.row.add([
+		    		//$(".close").click();
+		    		location.reload();
+		        	/*prodTable.row.add([
 		        		sku, name, type.capitalizeFirstLetter(), desc, col, "<img src='images/thumbnails/"+type+"s/"+imageTNName+"' alt='No Image' />", cost, price, stock, "<span class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='0' onclick='ProductInfoCallback(this.value)'>Edit</button></span>"
-		        	]).draw(true);
+		        	]).draw(true);*/
 		        },
 		        	//gimme status
 		        	//alert(data);
