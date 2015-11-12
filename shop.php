@@ -1,8 +1,6 @@
 <?php
     session_start();
-
     include("db_connect.php");
-
   $action = isset($_GET['action']) ? $_GET['action'] : "";
   $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : "1";
   $name = isset($_GET['name']) ? $_GET['name'] : "";
@@ -11,13 +9,11 @@
         echo "<strong>{$name}</strong> was added to your cart!";
     echo "</div>";
   }
-
   if($action=='exists'){
     echo "<div class='alert alert-info'>";
         echo "<strong>{$name}</strong> already exists in your cart!";
     echo "</div>";
   }
-
 	if (isset($_GET['collection']) && isset($_GET['type'])) {
 	    $select_products_query = "SELECT *
 	    						  FROM products
@@ -33,14 +29,12 @@
 	    						  FROM products
 	    						  WHERE type = '".$_GET['type']."'";
 	    $select_products_result = $mysqli->query($select_products_query);
-
 	} else {
 		$select_products_query = "SELECT *
 								  FROM products
 								  WHERE feature = '1'";
 	  $select_products_result = $mysqli->query($select_products_query);
 	}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
