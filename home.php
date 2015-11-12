@@ -123,172 +123,176 @@
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Featured Furniture</h2>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+											<div class="productinfo text-center">
+												<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
+												<img src="images/home/VintageLamp1.jpg" alt="" />
+												<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+												<?php print "<p>$".$featured_item->price."</p>\n";  ?>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+											<div class="product-overlay">
+												<div class="overlay-content">
+												<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+												<?php print "<p>$".$featured_item->price."</p>\n";  ?>
+													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												</div>
+											</div>
+									</div>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						
+
+
+					<?php $featured = "SELECT *
+										FROM products
+											WHERE productID=2";
+											$featured_result = $mysqli->query($featured);
+						$featured_item = $featured_result-> fetch_object();
+					?>
+							
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
 										<div class="productinfo text-center">
 											<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
-											<img src="images/home/VintageLamp1.jpg" alt="" />
+											<img src="images/home/ModernLamp3.jpg" alt="" />
 											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
-											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
+												<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
-											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
+												<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+												<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
+									</div>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
-						</div>
-
-
+	
 				<?php $featured = "SELECT *
-									FROM products
-										WHERE productID=2";
-										$featured_result = $mysqli->query($featured);
-					$featured_item = $featured_result-> fetch_object();
-				?>
-
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
-										<img src="images/home/ModernLamp3.jpg" alt="" />
-										<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
-											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
+										FROM products
+											WHERE productID=3";
+											$featured_result = $mysqli->query($featured);
+						$featured_item = $featured_result-> fetch_object();
+					?>
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
+											<img src="images/home/RusticLamp4.jpg" alt="" />
 											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
-											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
+												<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+												<?php print "<p>$".$featured_item->price."</p>\n";  ?>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
-
-			<?php $featured = "SELECT *
-									FROM products
-										WHERE productID=3";
-										$featured_result = $mysqli->query($featured);
-					$featured_item = $featured_result-> fetch_object();
-				?>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
-										<img src="images/home/RusticLamp4.jpg" alt="" />
-										<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
-											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
-											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ModernLamp2.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Modern Lamp</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
+						<div class="row">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/home/ModernLamp2.jpg" alt="" />
 											<h2>$56</h2>
 											<p>Modern Lamp</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>$56</h2>
+												<p>Modern Lamp</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+										</div>
+										<img src="images/home/new.png" class="new" alt="" />
 									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/RusticLamp1.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Rustic Lamp</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/home/RusticLamp1.jpg" alt="" />
 											<h2>$56</h2>
 											<p>Rustic Lamp</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>$56</h2>
+												<p>Rustic Lamp</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+										</div>
+										<img src="images/home/sale.png" class="new" alt="" />
 									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp1.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Vintage Lamp</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
+							<div class="col-sm-4">
+								<div class="product-image-wrapper">
+									<div class="single-products">
+										<div class="productinfo text-center">
+											<img src="images/home/VintageLamp1.jpg" alt="" />
 											<h2>$56</h2>
 											<p>Vintage Lamp</p>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
+										<div class="product-overlay">
+											<div class="overlay-content">
+												<h2>$56</h2>
+												<p>Vintage Lamp</p>
+												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+											</div>
+										</div>
 									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
+									<div class="choose">
+										<ul class="nav nav-pills nav-justified">
+											<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										</ul>
+									</div>
 								</div>
 							</div>
 						</div>
-						
 					</div><!--features_items-->
 					
 					<div class="category-tab"><!--category-tab-->
