@@ -1,8 +1,10 @@
 <?php
     session_start();
-
     include("db_connect.php");
+<<<<<<< HEAD
+=======
 
+>>>>>>> d8ca090941e018ec54699c52569d091e6ab2dfb3
   $action = isset($_GET['action']) ? $_GET['action'] : "";
   $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : "1";
   $name = isset($_GET['name']) ? $_GET['name'] : "";
@@ -11,13 +13,19 @@
         echo "<strong>{$name}</strong> was added to your cart!";
     echo "</div>";
   }
+<<<<<<< HEAD
+=======
 
+>>>>>>> d8ca090941e018ec54699c52569d091e6ab2dfb3
   if($action=='exists'){
     echo "<div class='alert alert-info'>";
         echo "<strong>{$name}</strong> already exists in your cart!";
     echo "</div>";
   }
+<<<<<<< HEAD
+=======
 
+>>>>>>> d8ca090941e018ec54699c52569d091e6ab2dfb3
 	if (isset($_GET['collection']) && isset($_GET['type'])) {
 	    $select_products_query = "SELECT *
 	    						  FROM products

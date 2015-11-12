@@ -95,7 +95,11 @@
                 <span>
                   <span>US $<?php echo "$product_details->price"; ?></span>
                   <label>Quantity:</label>
+<<<<<<< HEAD
+                  <input type="text" value="3" />
+=======
                   <input type="text" value="1" />
+>>>>>>> d8ca090941e018ec54699c52569d091e6ab2dfb3
                     <?php echo "<a href='addtocart.php?id=$product_details_cartinfo->productID&name=$product_details->name' class='btn btn-fefault cart'><i class='fa fa-shopping-cart'></i> Add to cart</a>" ?>
                 </span>
                 <p><b>Height</b> <?php echo "$product_details->height"; ?>'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>Width</b> <?php echo "$product_details->width"; ?>''</p>
