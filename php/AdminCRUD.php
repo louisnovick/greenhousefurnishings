@@ -62,11 +62,10 @@
             		<hr>
             		<div class="row">
             			<div class="col-sm-3">
-            				<label for="width">Width (In.): </label>
-            				<input type="number" class="form-control" id="width" value="'.$row["width"].'">
-            			</div>
-            			<div class="col-sm-3">
-            				<label for="height">Height (In.): </label>
+            				<labelv class="input-group">.): </label>
+            			    <input type="number" class="form-control" id="width" value="'.$row["width"].'">
+            				    <span class="input-group-addon"></span>
+            				</div> for="height">Height (In.): </label>
             				<input type="number" class="form-control" id="height" value="'.$row["height"].'">
             			</div>
             			<div class="col-sm-3">
