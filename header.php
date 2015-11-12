@@ -23,7 +23,7 @@
 				</div>
 			</div>
 		</div><!--/header_top-->
-		
+
 		<div class="header-middle"><!--header-middle-->
 			<div class="container">
 				<div class="row">
@@ -31,7 +31,7 @@
 						<div class="logo pull-left">
 							<a href="home.php"><img src="images/home/logo.png" alt="" /></a>
 						</div>
-						
+
 					</div>
 					<div class="col-sm-8">
 						<div class="shop-menu pull-right">
@@ -49,7 +49,7 @@
 				</div>
 			</div>
 		</div><!--/header-middle-->
-	
+
 		<div class="header-bottom"><!--header-bottom-->
 			<div class="container">
 				<div class="row">
@@ -65,8 +65,8 @@
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
 								<li><a href="home.php">Home</a></li>
-								<li><a href="shop.php">Shop</a></li> 
-								
+								<li><a href="shop.php">Shop</a></li>
+
 								<li><a href="contact-us.php">Contact</a></li>
 							</ul>
 						</div>
