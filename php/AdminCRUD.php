@@ -60,6 +60,7 @@
             			</div>
             		</div>
             		<hr>
+
             		<div class="row">
             			<div class="col-sm-3">
             				<label for="width">Width (In.): </label>
@@ -75,9 +76,9 @@
             			</div>
             			<div class="col-sm-3">
             				<label for="weight">Weight (Lbs.): </label>
-            				<input type="number" class="form-control" id="weight" value="'.$row["weight"].'">
-            			</div>
-            		</div>
+            				<input type="number" class="form-control" id="weight" value="'.$row["height"].'">
+        			</div>
+        	    	</div>
             		<div class="row">
             			<div class="col-sm-6">
             				<label for="stock">Stock: </label>
