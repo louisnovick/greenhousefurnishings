@@ -11,14 +11,6 @@
 					<div class="col-sm-7">
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
 								<p>Darline Bencomse</p>
 								<h2>Back End Developer</h2>
 							</div>
@@ -26,14 +18,6 @@
 						
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
 								<p>Andrew Burdett</p>
 								<h2>Back End Developer</h2>
 							</div>
@@ -41,14 +25,6 @@
 						
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
 								<p>Weston Chapman</p>
 								<h2>Front End Designer</h2>
 							</div>
@@ -56,42 +32,18 @@
 						
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
 								<p>Amber Davis</p>
 								<h2>Front End Designer</h2>
 							</div>
 						</div>
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
 								<p>Keven Ledee</p>
 								<h2>Front End Developer</h2>
 							</div>
 						</div>
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
-								<a href="#">
-									<div class="iframe-img">
-										<img src="images/home/iframe1.png" alt="" />
-									</div>
-									<div class="overlay-icon">
-										<i class="fa fa-play-circle-o"></i>
-									</div>
-								</a>
 								<p>Louis Novick</p>
 								<h2>Group Leader</h2>
 							</div>
@@ -114,10 +66,9 @@
 						<div class="single-widget">
 							<h2>Services</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Online Help</a></li>
-								<li><a href="#">Contact Us</a></li>
+								<li><a href="contact-us.php">Online Help</a></li>
+								<li><a href="contact-us.php">Contact Us</a></li>
 								<li><a href="#">Order Status</a></li>
-								<li><a href="#">Change Location</a></li>
 								<li><a href="#">FAQ’s</a></li>
 							</ul>
 						</div>
@@ -151,8 +102,7 @@
 							<h2>About GreenHouse Furniture</h2>
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="#">Company Information</a></li>
-								<li><a href="#">Careers</a></li>
-								<li><a href="#">Store Location</a></li>
+								<li><a href="contact-us.php">Store Location</a></li>
 								<li><a href="#">Copyright</a></li>
 							</ul>
 						</div>

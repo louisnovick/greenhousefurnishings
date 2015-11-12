@@ -129,21 +129,20 @@
 										<div class="productinfo text-center">
 											<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
 											<img src="images/home/VintageLamp1.jpg" alt="" />
-											<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
+											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<?php print "<p>".$featured_item->price."</p>\n";  ?>
-												<?php print "<p>".$featured_item->name."</p>\n";  ?>
+											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
 										</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
@@ -164,21 +163,20 @@
 									<div class="productinfo text-center">
 										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
 										<img src="images/home/ModernLamp3.jpg" alt="" />
-										<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
+										<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<?php print "<p>".$featured_item->price."</p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
+											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
@@ -197,21 +195,20 @@
 									<div class="productinfo text-center">
 										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
 										<img src="images/home/RusticLamp4.jpg" alt="" />
-										<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
+										<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 									</div>
 									<div class="product-overlay">
 										<div class="overlay-content">
-											<?php print "<p>".$featured_item->price."</p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
+											<?php print "<h2>".$featured_item->name."</h2>\n";  ?>
+											<?php print "<p>$".$featured_item->price."</p>\n";  ?>
 											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 									</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
@@ -237,7 +234,6 @@
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
@@ -263,7 +259,6 @@
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
@@ -288,7 +283,6 @@
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
 										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
