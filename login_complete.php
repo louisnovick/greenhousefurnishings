@@ -113,7 +113,7 @@
           
           if ($signup_complete == true) {
     ?>
-    <div>
+    <div class="col-md-6 col-md-offset-3">
         <h2>Your account creation was successful!</h2>
         <br>
         <a href="home.php">Home</a>         <a href="shop.php">Shop</a>
@@ -122,7 +122,8 @@
             } else { 
     ?>
 
-    <div class="signup-form"><!--sign up form-->
+    <div class="signup-form col-md-6 col-md-offset-3"><!--sign up form-->
+        
         <h2>Complete your sign up!</h2>
         <form action="login_complete.php" method="post">
             <input type="text" placeholder="First Name" name="first_name" id="first_name"
