@@ -3,7 +3,11 @@
 
 	include("db_connect.php");
 
+	$failed_login = false;
+
 	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
+
+		/*Login query and database retrival. Setting session variables to hold databse information.*/
 
 		$user_query = "SELECT * FROM users";
 		$user_result = $mysqli->query($user_query);
@@ -12,16 +16,17 @@
 		}
 
 		while($row = $user_result->fetch_object()) {
-			if((($_POST['username']) == ($row->username)) && ($_POST['password'] == ($row->password))) {
+			if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
 				$_SESSION['logged_in'] = true;
 				$_SESSION['logged_in_user'] = $row->username;
 				$_SESSION['logged_in_user_access'] = $row->userAccess;
 				$_SESSION['logged_in_user_fn'] = $row->fName;
 				$_SESSION['logged_in_user_ln'] = $row->lName;
 				$_SESSION['logged_in_user_email'] = $row->email;
-				$_SESSION['logged_in_user_address'] = $row->shippingAddress;
+			} else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
+				$failed_login = true;
 			} else {
-
+				$failed_login = false;
 			}
 		}	
 	}
@@ -46,6 +51,7 @@
     <link href="css/animate.css" rel="stylesheet">
 	<link href="css/main.css" rel="stylesheet">
 	<link href="css/responsive.css" rel="stylesheet">
+	<link href="css/andrew_style.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
@@ -69,6 +75,11 @@
 						<form action="login.php" method="post">
 							<input name="username" id="username" type="text" placeholder="Username" />
 							<input name="password" id="password" type="password" placeholder="Password" />
+							<?php  
+								if (isset($_POST['submit'])) {
+									echo "<span class=\"error\">Wrong Username or Password</span><br>";
+								}
+							?>
 							<span>
 								<input type="checkbox" class="checkbox"> 
 								Keep me signed in
@@ -83,10 +94,9 @@
 				<div class="col-sm-4">
 					<div class="signup-form"><!--sign up form-->
 						<h2>New User Signup!</h2>
-						<form action="#">
-							<input type="text" placeholder="Name"/>
-							<input type="email" placeholder="Email Address"/>
-							<input type="password" placeholder="Password"/>
+						<form action="login_complete.php" method="post">
+							<input type="text" placeholder="New Username" name="new_username" id="new_username"/>
+							<input type="email" placeholder="Email" name="new_email" id="new_email" />
 							<button type="submit" class="btn btn-default">Signup</button>
 						</form>
 					</div><!--/sign up form-->

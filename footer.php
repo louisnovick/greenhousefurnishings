@@ -126,12 +126,12 @@
 						<div class="single-widget">
 							<h2>Quick Shop</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Lamps</a></li>
-								<li><a href="#">Chairs</a></li>
-								<li><a href="#">Sofas</a></li>
-								<li><a href="#">Bookcases</a></li>
-								<li><a href="#">Tables</a></li>
-								<li><a href="#">Dressers</a></li>
+								<li><a href="shop.php?type=lamp">Lamps</a></li>
+								<li><a href="shop.php?type=chair">Chairs</a></li>
+								<li><a href="shop.php?type=sofa">Sofas</a></li>
+								<li><a href="shop.php?type=bookcase">Bookcases</a></li>
+								<li><a href="shop.php?type=table">Tables</a></li>
+								<li><a href="shop.php?type=dresser">Dressers</a></li>
 							</ul>
 						</div>
 					</div>
@@ -182,3 +182,13 @@
 		</div>
 		
 	</footer><!--/Footer-->
+	<script>
+	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	  ga('create', 'UA-69932555-1', 'auto');
+	  ga('send', 'pageview');
+
+</script>
