@@ -60,12 +60,14 @@
             			</div>
             		</div>
             		<hr>
+
             		<div class="row">
             			<div class="col-sm-3">
-            				<labelv class="input-group">(In.): </label>
-            			    <input type="number" class="form-control" id="width" value="'.$row["width"].'">
-            				    <span class="input-group-addon"></span>
-            				</div> for="height">Height (In.): </label>
+            				<label for="width">Width (In.): </label>
+            				<input type="number" class="form-control" id="width" value="'.$row["width"].'">
+            			</div>
+            			<div class="col-sm-3">
+            				<label for="height">Height (In.): </label>
             				<input type="number" class="form-control" id="height" value="'.$row["height"].'">
             			</div>
             			<div class="col-sm-3">
@@ -74,9 +76,9 @@
             			</div>
             			<div class="col-sm-3">
             				<label for="weight">Weight (Lbs.): </label>
-            				<input type="number" class="form-control" id="weight" value="'.$row["weight"].'">
-            			</div>
-            		</div>
+            				<input type="number" class="form-control" id="weight" value="'.$row["height"].'">
+        			</div>
+        	    	</div>
             		<div class="row">
             			<div class="col-sm-6">
             				<label for="stock">Stock: </label>
