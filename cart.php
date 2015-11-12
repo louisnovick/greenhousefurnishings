@@ -1,6 +1,30 @@
 <?php
     session_start();
+
+    include("db_connect.php");
+
+    $action = isset($_GET['action']) ? $_GET['action'] : "";
+    $name = isset($_GET['name']) ? $_GET['name'] : "";
+
+    if($action=='removed'){
+        echo "<div class='alert alert-info'>";
+            echo "<strong>{$name}</strong> was removed from your cart!";
+        echo "</div>";
+    }
+
+    if($action=='added'){
+      echo "<div class='alert alert-info'>";
+          echo "<strong>{$name}</strong> was added to your cart!";
+      echo "</div>";
+    }
+
+    else if($action=='quantity_updated'){
+        echo "<div class='alert alert-info'>";
+            echo "<strong>{$name}</strong> quantity was updated!";
+        echo "</div>";
+    }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,7 +53,6 @@
 
 <body>
 	<?php include("header.php"); ?>
-
 	<section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -38,6 +61,7 @@
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
+
 			<div class="table-responsive cart_info">
 				<table class="table table-condensed">
 					<thead>
@@ -51,82 +75,57 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/home/thumbnails/ModernLamp2.jpg" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Modern Lamp</a></h4>
-								<p>SKU: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$99</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$99</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+          <?php
+          if(count($_SESSION['cart_items'])>0){
 
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/home/thumbnails/RusticLamp3.jpg" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Rustic Lamp</a></h4>
-								<p>SKU: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$99</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$99</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/home/thumbnails/VintageLamp2.jpg" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Vintage Lamp</a></h4>
-								<p>SKU: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$99</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$99</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+              // get the product ids
+              $ids = "";
+              foreach($_SESSION['cart_items'] as $id=>$value){
+                  $ids = $ids . $id . ",";
+              }
+
+              // remove the last comma
+              $ids = rtrim($ids, ',');
+              //start table
+              $cart_query = "SELECT *
+                    FROM products
+                    WHERE productID IN ({$ids}) ORDER BY name";
+              $select_products_result = $mysqli->query($cart_query);
+
+            while($row = $select_products_result->fetch_object()) {
+            ?>
+            <tr>
+              <td class="cart_product">
+                <a href=""><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> /></a>
+              </td>
+              <td class="cart_description">
+                <h4><a href=""><?php echo "$row->name"; ?></a></h4>
+                <p>SKU: <?php echo "$row->sku"; ?></p>
+              </td>
+              <td class="cart_price">
+                <p>$<?php echo "$row->price"; ?></p>
+              </td>
+              <td class="cart_quantity">
+                <div class="cart_quantity_button">
+                  <a class="cart_quantity_up" href=""> + </a>
+                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                  <a class="cart_quantity_down" href=""> - </a>
+                </div>
+              </td>
+              <td class="cart_total">
+                <p class="cart_total_price">$<?php echo "$row->price"; ?></p>
+              </td>
+              <td class="cart_delete">
+               <?php echo "<a href='removefromcart.php?id=$row->productID&name=$row->name' class='cart_quantity_delete'><i class='fa fa-times'></i></a>"; ?>
+              </td>
+            </tr>
+            <?php }
+              } else {
+                  echo "<div class='alert alert-danger'>";
+                      echo "<strong>No products found</strong> in your cart!";
+                  echo "</div>";
+              }
+              ?>
 					</tbody>
 				</table>
 			</div>
@@ -199,14 +198,14 @@
 		</div>
 	</section><!--/#do_action-->
 
-		<?php include("footer.php"); ?>
+	<?php include("footer.php"); ?>
 
 
 
-    <script src="js/jquery.js"></script>
-	<script src="js/bootstrap.min.js"></script>
-	<script src="js/jquery.scrollUp.min.js"></script>
-    <script src="js/jquery.prettyPhoto.js"></script>
-    <script src="js/main.js"></script>
+  <script src="js/jquery.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/jquery.scrollUp.min.js"></script>
+  <script src="js/jquery.prettyPhoto.js"></script>
+  <script src="js/main.js"></script>
 </body>
 </html>

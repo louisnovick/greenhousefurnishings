@@ -3,28 +3,44 @@
 
     include("db_connect.php");
 
+  $action = isset($_GET['action']) ? $_GET['action'] : "";
+  $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : "1";
+  $name = isset($_GET['name']) ? $_GET['name'] : "";
+  if($action=='added'){
+    echo "<div class='alert alert-info'>";
+        echo "<strong>{$name}</strong> was added to your cart!";
+    echo "</div>";
+  }
+
+  if($action=='exists'){
+    echo "<div class='alert alert-info'>";
+        echo "<strong>{$name}</strong> already exists in your cart!";
+    echo "</div>";
+  }
+
 	if (isset($_GET['collection']) && isset($_GET['type'])) {
-		 
-	    $select_products_query = "SELECT * 
-	    						  FROM products 
+	    $select_products_query = "SELECT *
+	    						  FROM products
 	    						  WHERE type = '".$_GET['type']."' AND collection = '".$_GET['collection']."'";
 	    $select_products_result = $mysqli->query($select_products_query);
 	} else if (isset($_GET['collection'])) {
-		$select_products_query = "SELECT * 
-	    						  FROM products 
+		$select_products_query = "SELECT *
+	    						  FROM products
 	    						  WHERE collection = '".$_GET['collection']."'";
 	    $select_products_result = $mysqli->query($select_products_query);
 	} else if (isset($_GET['type'])) {
-		$select_products_query = "SELECT * 
-	    						  FROM products 
+		$select_products_query = "SELECT *
+	    						  FROM products
 	    						  WHERE type = '".$_GET['type']."'";
 	    $select_products_result = $mysqli->query($select_products_query);
+
 	} else {
-		$select_products_query = "SELECT * 
-								  FROM products 
+		$select_products_query = "SELECT *
+								  FROM products
 								  WHERE feature = '1'";
-	    $select_products_result = $mysqli->query($select_products_query);
+	  $select_products_result = $mysqli->query($select_products_query);
 	}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +60,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -54,20 +70,19 @@
 
 <body>
 	<?php include("header.php"); ?>
-	
 	<section id="advertisement">
 		<div class="container">
 			<img src="images/shop/advertisement.jpg" alt="" />
 		</div>
 	</section>
-	
+
 	<section>
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-3"><!-- sidebar container -->
 					<?php include("sidebar.php"); ?>
 				</div>
-				
+
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">
@@ -79,7 +94,7 @@
 								print("Featured Collection");
 							}
 							?>
-						</h2>						
+						</h2>
 						<?php
 							while($row = $select_products_result->fetch_object()) {
 						?>
@@ -98,7 +113,7 @@
 												<h2>$<?php echo "$row->price"; ?></h2>
 												<p><?php echo "$row->name"; ?></p>
 												<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>
-												<a href="cart.php" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                        <?php echo "<a href='addtocart.php?id=$row->productID&name=$row->name' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Add to cart</a>" ?>
 											</div>
 									</div>
 								</div>
@@ -111,7 +126,7 @@
 							</div>
 						</div>
 						<?php } ?>
-						
+
 						<!--
 						<ul class="pagination">
 							<li class="active"><a href="">1</a></li>
@@ -124,9 +139,9 @@
 			</div>
 		</div>
 	</section>
-	
+
 	<?php include("footer.php"); ?>
-	
+
 
 
     <script src="js/jquery.js"></script>
