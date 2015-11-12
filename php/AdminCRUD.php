@@ -60,7 +60,6 @@
             			</div>
             		</div>
             		<hr>
-
             		<div class="row">
             			<div class="col-sm-3">
             				<label for="width">Width (In.): </label>
