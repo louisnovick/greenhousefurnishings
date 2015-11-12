@@ -298,8 +298,4 @@
               <img src="images/home/shipping.jpg" alt="" />
             </div><!--/shipping-->
           </div>
-<<<<<<< HEAD
 </div>
-=======
-</div>
->>>>>>> d8ca090941e018ec54699c52569d091e6ab2dfb3
