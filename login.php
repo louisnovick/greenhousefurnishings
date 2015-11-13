@@ -68,6 +68,28 @@
                     $failed_login = false;
                 }
             }
+    } else {
+        $user_query = "SELECT * FROM users";
+        $user_result = $mysqli->query($user_query);
+        if($mysqli->error) {
+            print "Error: Someone's getting fired.";
+        }
+        while($row = $user_result->fetch_object()) {
+            if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
+                $_SESSION['logged_in'] = true;
+                $_SESSION['logged_in_user'] = $row->username;
+                $_SESSION['logged_in_user_access'] = $row->userAccess;
+                $_SESSION['logged_in_user_fn'] = $row->fName;
+                $_SESSION['logged_in_user_ln'] = $row->lName;
+                $_SESSION['logged_in_user_email'] = $row->email;
+                header("Location: home.php");
+            } else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
+                $failed_login = true;
+            } else {
+                $failed_login = false;
+                
+            }
+        }
     }
 ?> 
 <!DOCTYPE html>
@@ -111,73 +133,100 @@
     <?php
             } else { 
     ?>
+    <section id="form"><!--form-->
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-4 col-sm-offset-1">
+					<div class="login-form"><!--login form-->
+						<h2>Login to your account</h2>
+						<form action="login.php" method="post">
+							<input name="username" id="username" type="text" placeholder="Username" />
+							<input name="password" id="password" type="password" placeholder="Password" />
+							<span>
+								<input type="checkbox" class="checkbox"> 
+								Keep me signed in
+							</span>
+							<button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
+						</form>
+					</div><!--/login form-->
+				</div>
+				<div class="col-sm-1">
+					<h2 class="or">OR</h2>
+				</div>
+				<div class="col-sm-4">
+					 <div class="signup-form"><!--sign up form-->
+                        <h2>Complete your sign up!</h2>
+                        <form action="login_complete.php" method="post">
+                            <input type="text" placeholder="First Name" name="first_name" id="first_name"
+                                    <?php if (isset($_POST['first_name'])) {
+                                        print("value=\"".$_POST['first_name']."\"");
+                                    } ?> 
+                                />
+                                <?php  
+                                    if (isset($_POST['first_name'])) {
+                                        if ($_POST['first_name'] == "") {
+                                            print("<span class=\"error\">You must submit a first name.</span>");
+                                        } else {}
+                                    } else {
+                                        print("<span class=\"error\">*required</span>");
+                                    }
+                                ?>
+                                <input type="text" placeholder="Last Name" name="last_name" id="last_name"
+                                    <?php if (isset($_POST['last_name'])) {
+                                        print("value=\"".$_POST['last_name']."\"");
+                                    } ?> 
+                                />
+                                <?php  
+                                    if (isset($_POST['last_name'])) {
+                                        if ($_POST['last_name'] == "") {
+                                            print("<span class=\"error\">You must submit a last name.</span>");
+                                        } else {}
+                                    } else {
+                                        print("<span class=\"error\">*required</span>");
+                                    }
+                                ?>
+                                <input type="email" placeholder="Email" name="new_email" id="new_email" value="<?php echo $_POST['new_email'] ?>" />
+                                <?php
+                                    if ($email_exists == true) {
+                                        print("<span class=\"error\">Email is already in use!</span><br>");
+                                    }
+                                    if (isset($_POST['new_email'])) {
+                                        if ($_POST['new_email'] == "") {
+                                            print("<span class=\"error\">You must submit an eMail.</span>");
+                                        } else {}
+                                    } else {
+                                        print("<span class=\"error\">*required</span>");
+                                    }
+                                ?>
+                                <input type="text" placeholder="New Username" name="new_username" id="new_username" value="<?php echo $_POST['new_username'] ?>" />
+                                <?php
+                                    if ($username_exists == true) {
+                                        print("<span class=\"error\">Username is already in use!</span><br>");
+                                    }
+                                    if (isset($_POST['new_username'])) {
+                                        if ($_POST['new_username'] == "") {
+                                            print("<span class=\"error\">You must submit a username</span>");
+                                        } else {}
+                                    } else {
+                                        print("<span class=\"error\">*required</span>");
+                                    }
+                                ?>
+                                <input type="password" placeholder="Password" name="new_password" id="new_password"/>
+                                <input type="password" placeholder="Retype Password" name="pass_retype" id="pass_retype"/>
+                                <?php
+                                    if ($passwords_match == false) {
+                                        print("Passwords must match!<br>");
+                                    }
+                                ?>
+                            <button type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>
+                        </form>
+                    </div>
+				</div>
+			</div>
+		</div>
+	</section><!--/form-->
 
-    <div class="signup-form"><!--sign up form-->
-        <h2>Complete your sign up!</h2>
-        <form action="login_complete.php" method="post">
-            <input type="text" placeholder="First Name" name="first_name" id="first_name"
-                <?php if (isset($_POST['first_name'])) {
-                    print("value=\"".$_POST['first_name']."\"");
-                } ?> 
-            />
-            <?php  
-                if (isset($_POST['first_name'])) {
-                    if ($_POST['first_name'] == "") {
-                        print("<span class=\"error\">You must submit a first name.</span>");
-                    } else {}
-                } else {
-                    print("<span class=\"error\">*required</span>");
-                }
-            ?>
-            <input type="text" placeholder="Last Name" name="last_name" id="last_name"
-                <?php if (isset($_POST['last_name'])) {
-                    print("value=\"".$_POST['last_name']."\"");
-                } ?> 
-            />
-            <?php  
-                if (isset($_POST['last_name'])) {
-                    if ($_POST['last_name'] == "") {
-                        print("<span class=\"error\">You must submit a last name.</span>");
-                    } else {}
-                } else {
-                    print("<span class=\"error\">*required</span>");
-                }
-            ?>
-            <input type="email" placeholder="Email" name="new_email" id="new_email" value="<?php echo $_POST['new_email'] ?>" />
-            <?php
-                if ($email_exists == true) {
-                    print("<span class=\"error\">Email is already in use!</span><br>");
-                }
-                if (isset($_POST['new_email'])) {
-                    if ($_POST['new_email'] == "") {
-                        print("<span class=\"error\">You must submit an eMail.</span>");
-                    } else {}
-                } else {
-                    print("<span class=\"error\">*required</span>");
-                }
-            ?>
-            <input type="text" placeholder="New Username" name="new_username" id="new_username" value="<?php echo $_POST['new_username'] ?>" />
-            <?php
-                if ($username_exists == true) {
-                    print("<span class=\"error\">Username is already in use!</span><br>");
-                }
-                if (isset($_POST['new_username'])) {
-                    if ($_POST['new_username'] == "") {
-                        print("<span class=\"error\">You must submit a username</span>");
-                    } else {}
-                } else {
-                    print("<span class=\"error\">*required</span>");
-                }
-            ?>
-            <input type="password" placeholder="Password" name="new_password" id="new_password"/>
-            <input type="password" placeholder="Retype Password" name="pass_retype" id="pass_retype"/>
-            <?php
-                if ($passwords_match == false) {
-                    print("Passwords must match!<br>");
-                }
-            ?>
-            <button type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>
-        </form>
+   
 
     <?php 
         }

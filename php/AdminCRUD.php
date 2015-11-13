@@ -424,7 +424,7 @@
                     email='".$_POST["email"]."', 
                     userAccess='".$_POST["access"]."', 
                     username='".$_POST["user"]."', 
-                    password='".$_POST["password"]."'
+                    password='".md5($_POST["password"])."'
                  where username = '".$_POST["id"]."'";
             }
             else{
@@ -448,7 +448,7 @@
                     .$_POST["fName"]."','"
                     .$_POST["lName"]."','"
                     .$_POST["email"]."','"
-                    .$_POST["password"]."','"
+                    .md5($_POST["password"])."','"
                     .$_POST["user"]."','"
                     .$_POST["access"]."'
                   )";
