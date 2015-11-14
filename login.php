@@ -16,6 +16,7 @@
 		}
 
 		while($row = $user_result->fetch_object()) {
+			
 			if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
 				$_SESSION['logged_in'] = true;
 				$_SESSION['logged_in_user'] = $row->username;

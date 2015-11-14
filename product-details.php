@@ -127,7 +127,7 @@
 											<option value="2">2</option>
 											<option value="1">1</option>
 										</select>
-										<textarea name="comment" id="rating"></textarea>
+										<textarea name="comment" id="comment"></textarea>
 										<button type="submit" class="btn btn-default pull-right" name="rating_submit" id="rating_submit">
 											Submit
 										</button>
