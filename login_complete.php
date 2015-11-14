@@ -7,39 +7,86 @@
     $passwords_match = false;
     $signup_complete = false;
 
+    $pattern_username = "/^[a-zA-Z0-9_-~ @ # $ ^ &]{3,16}$/";
+    $pattern_password = "/^[a-z0-9_-~ @ # $ ^ &]{3,18}$/";
+    $pattern_email = "/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/";
+    $pattern_fname = "/^[a-zA-Z]{1,16}$/";
+    $pattern_lname = "/^[a-zA-Z]{1,16}$/";
+
+    $username_requirements_met = false;
+    $password_requirements_met = false;
+    $email_requirements_met = false;
+    $fname_requirements_met = false;
+    $lname_requirements_met = false;
+
+    if (isset($_POST['new_username'])) {
+        if (preg_match($pattern_username, $_POST['new_username']) == 1) {
+            $username_requirements_met = true;
+        }
+    }
+    if (isset($_POST['new_password'])) {
+        if (preg_match($pattern_password, $_POST['new_password']) == 1) {
+            $password_requirements_met = true;
+        }
+    }
+    if (isset($_POST['first_name'])) {
+        if (preg_match($pattern_fname, $_POST['first_name']) == 1) {
+            $fname_requirements_met = true;
+        }
+    }
+    if (isset($_POST['last_name'])) {
+        if (preg_match($pattern_lname, $_POST['last_name']) == 1) {
+            $lname_requirements_met = true;
+        }
+    }
+    if (isset($_POST['new_email'])) {
+        if (preg_match($pattern_email, $_POST['new_email']) == 1) {
+            $email_requirements_met = true;
+        }
+    }
+
     /* Statements to check and see if the username or email already exists in the database*/
     $search_user_query = "SELECT * FROM users";
     $search_user_result = $mysqli->query($search_user_query);
-    while($row = $search_user_result->fetch_object()) {
-        if ($_POST['new_username'] == $row->username) {
-            $username_exists = true;
+    if ($username_requirements_met == true && $email_requirements_met == true) {
+        while($row = $search_user_result->fetch_object()) {
+            if ($_POST['new_username'] == $row->username) {
+                $username_exists = true;
+            }
+            if ($_POST['new_email'] == $row->email) {
+                $email_exists = true;
+            }
         }
-        if ($_POST['new_email'] == $row->email) {
-            $email_exists = true;
-        }
-    }
+    } else {}
     /* end username and email check*/
 
     /*check to see if both passwords from form match*/
-    if (isset($_POST['new_password']) && isset($_POST['pass_retype'])) {
-        if ($_POST['new_password'] == $_POST['pass_retype']) {
-            $passwords_match = true;
+    if ($password_requirements_met == true) {
+        if (isset($_POST['new_password']) && isset($_POST['pass_retype'])) {
+            if ($_POST['new_password'] == $_POST['pass_retype']) {
+                $passwords_match = true;
+            }
         }
-    }
+    }    
     /* end password match*/ 
 
     /* if form is filled out, username and email don't exist in database, and passwords match, insert data into database*/
     if (isset($_POST['signup_submit'])) { 
         if (isset($_POST['first_name'])
-            && $_POST['first_name'] != "" 
+            && $_POST['first_name'] != ""
+            && $fname_requirements_met == true
             && isset($_POST['last_name'])
             && $_POST['last_name'] != "" 
+            && $lname_requirements_met == true 
             && isset($_POST['new_email'])
             && $_POST['new_email'] != "" 
+            && $email_requirements_met == true
             && isset($_POST['new_username'])
             && $_POST['new_username'] != "" 
+            && $username_requirements_met == true
             && isset($_POST['new_password'])
             && $_POST['new_password'] != ""
+            && $password_requirements_met == true
             && $username_exists == false
             && $email_exists == false
             && $passwords_match == true) { 
@@ -134,7 +181,9 @@
                 if (isset($_POST['first_name'])) {
                     if ($_POST['first_name'] == "") {
                         print("<span class=\"error\">You must submit a first name.</span>");
-                    } else {}
+                    } else if($fname_requirements_met == false) {
+                        print("<span class=\"error\">Name does not meet requirements.(No numbers or symbols aloud)</span>");
+                    }
                 } else {
                     print("<span class=\"error\">*required</span>");
                 }
@@ -148,7 +197,9 @@
                 if (isset($_POST['last_name'])) {
                     if ($_POST['last_name'] == "") {
                         print("<span class=\"error\">You must submit a last name.</span>");
-                    } else {}
+                    } else if($lname_requirements_met == false) {
+                        print("<span class=\"error\">Name does not meet requirements.(No numbers or symbols aloud)</span>");
+                    }
                 } else {
                     print("<span class=\"error\">*required</span>");
                 }
@@ -161,7 +212,9 @@
                 if (isset($_POST['new_email'])) {
                     if ($_POST['new_email'] == "") {
                         print("<span class=\"error\">You must submit an eMail.</span>");
-                    } else {}
+                    } else if($email_requirements_met == false) {
+                        print("<span class=\"error\">Email does not meet requirements.(ex: name@email.com)</span>");
+                    }
                 } else {
                     print("<span class=\"error\">*required</span>");
                 }
@@ -174,7 +227,9 @@
                 if (isset($_POST['new_username'])) {
                     if ($_POST['new_username'] == "") {
                         print("<span class=\"error\">You must submit a username</span>");
-                    } else {}
+                    } else if($username_requirements_met == false) {
+                        print("<span class=\"error\">Username does not meet requirements.(Letters and numbers aloud, can contain: @ # $ ^ &)</span>");
+                    }
                 } else {
                     print("<span class=\"error\">*required</span>");
                 }
@@ -183,7 +238,10 @@
             <input type="password" placeholder="Retype Password" name="pass_retype" id="pass_retype"/>
             <?php
                 if ($passwords_match == false) {
-                    print("Passwords must match!<br>");
+                    print("<span class=\"error\">Passwords must match!</span>");
+                }
+                if ($password_requirements_met == false) {
+                    print("<br><span class=\"error\">Password does not meet requirements.(Password must be 3-18 characters, can contain: @ # $ ^ &)</span>");
                 }
             ?>
             <button type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>

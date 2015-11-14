@@ -5,31 +5,36 @@
 
 	$failed_login = false;
 
+	$pattern_username = "/^[a-zA-Z0-9_-]{3,16}$/";
+	$pattern_password = "/^[a-z0-9_-~ @ # $ ^ &]{3,18}$/";
+
 	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
+		if (preg_match($pattern_username, $_POST['username']) == 1 && preg_match($pattern_password, $_POST['password']) == 1) {
+			/*Login query and database retrival. Setting session variables to hold databse information.*/
 
-		/*Login query and database retrival. Setting session variables to hold databse information.*/
-
-		$user_query = "SELECT * FROM users";
-		$user_result = $mysqli->query($user_query);
-		if($mysqli->error) {
-			print "Error: Someone's getting fired.";
-		}
-
-		while($row = $user_result->fetch_object()) {
-			
-			if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
-				$_SESSION['logged_in'] = true;
-				$_SESSION['logged_in_user'] = $row->username;
-				$_SESSION['logged_in_user_access'] = $row->userAccess;
-				$_SESSION['logged_in_user_fn'] = $row->fName;
-				$_SESSION['logged_in_user_ln'] = $row->lName;
-				$_SESSION['logged_in_user_email'] = $row->email;
-			} else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
-				$failed_login = true;
-			} else {
-				$failed_login = false;
+			$user_query = "SELECT * FROM users";
+			$user_result = $mysqli->query($user_query);
+			if($mysqli->error) {
+				print "Error: Someone's getting fired.";
 			}
-		}	
+
+			while($row = $user_result->fetch_object()) {			
+				if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
+					$_SESSION['logged_in'] = true;
+					$_SESSION['logged_in_user'] = $row->username;
+					$_SESSION['logged_in_user_access'] = $row->userAccess;
+					$_SESSION['logged_in_user_fn'] = $row->fName;
+					$_SESSION['logged_in_user_ln'] = $row->lName;
+					$_SESSION['logged_in_user_email'] = $row->email;
+				} else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
+					$failed_login = true;
+				} else {
+					$failed_login = false;
+				}
+			}	
+		} else {
+			$failed_login = true;
+		}
 	}
 
 	if (isset($_SESSION['logged_in'])) {
@@ -77,7 +82,7 @@
 							<input name="username" id="username" type="text" placeholder="Username" />
 							<input name="password" id="password" type="password" placeholder="Password" />
 							<?php  
-								if (isset($_POST['submit'])) {
+								if (isset($_POST['submit']) && $failed_login == true) {
 									echo "<span class=\"error\">Wrong Username or Password</span><br>";
 								}
 							?>
