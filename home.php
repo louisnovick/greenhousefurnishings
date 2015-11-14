@@ -3,11 +3,10 @@
 
 	session_start();
 
-	$select_query = "SELECT product_name,
-					products,
-					skuId
-					FROM products";
-	$select_result = $mysqli->query($select_query);
+	$select_products_query = "SELECT * 
+								  FROM products 
+								  WHERE feature = '1'";
+	$select_products_result = $mysqli->query($select_products_query);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -53,9 +52,9 @@
 							<div class="item active">
 								<div class="col-sm-6">
 									<h1><span>GREEN</span>HOUSE</h1>
-									<h2>Eco-Friendly Furniture</h2>
-									<p>Greenhousefurniture.com offers a full range of furniture built from sustainable and environmentally safe materials. Using the wood from trees that have been specifically planted for use in the creation of wood based products, Green House Furniture offers a full range of eco-friendly furniture that will please even the most design conscious and environmentally friendly connoisseur. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Modern Collection</h2>
+									<p>View our Modern Collection! Filled with styles that will bring your home into the current century.</p>
+									<a href="shop.php?collection=modern" class="btn btn-default get">View Now</a>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/home/ModernLamp1.jpg" class="furniture img-responsive" alt="" />
@@ -65,9 +64,9 @@
 							<div class="item">
 								<div class="col-sm-6">
 									<h1><span>GREEN</span>HOUSE</h1>
-									<h2>Eco-Friendly Furniture</h2>
-									<p>Brighten and accessorize your modern home without harming the environment or creating a toxic living space with Green House Furniture's innovative collection of eco-friendly lighting. Made from recylced metal and plastic, reclaimed wood, and other safe materials, every piece in our collection is meticulously crafted so that you can get the quality and durability you need without hurting the environment in the process. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<h2>Rustic Collection</h2>
+									<p>Give your home that woodsy feeling by shopping our Rustic Collection!</p>
+									<a href="shop.php?collection=rustic" class="btn btn-default get">View Now</a>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/home/RusticLamp3.jpg" class="furniture img-responsive" alt="" />
@@ -79,8 +78,8 @@
 								<div class="col-sm-6">
 									<h1><span>GREEN</span>HOUSE</h1>
 									<h2>Eco-Friendly Furniture</h2>
-									<p>Combining great modern style with eco-conscious design, Green House Furniture's collection of eco-friendly furniture offers plenty of solutions for getting comfortable and stylish while staying green. Featuring sofas, chairs, lamps, shelving and other types of essentials our collection offers furnishings for every room and in timeless, contemporary styles you'll enjoy for years to come. </p>
-									<button type="button" class="btn btn-default get">Get it now</button>
+									<p>Feed your nostalgia and shop all vintage furniture! Our Vintage Collection will be sure to remind you of the good ol' days!</p>
+									<a href="shop.php?collection=vintage" class="btn btn-default get">View Now</a>
 								</div>
 								<div class="col-sm-6">
 									<img src="images/home/VintageLamp2.jpg" class="furniture img-responsive" alt="" />
@@ -111,409 +110,41 @@
 				</div>
 
 <!--/PHP FEATURED ITEM PULL-->
-
-				<?php $featured = "SELECT *
-									FROM products
-										WHERE productID=1";
-										$featured_result = $mysqli->query($featured);
-					$featured_item = $featured_result-> fetch_object();
-				?>
-
-				
 				<div class="col-sm-9 padding-right">
 					<div class="features_items"><!--features_items-->
 						<h2 class="title text-center">Featured Furniture</h2>
+						<?php
+							while($row = $select_products_result->fetch_object()) {
+						?>
 						<div class="col-sm-4">
 							<div class="product-image-wrapper">
 								<div class="single-products">
-										<div class="productinfo text-center">
-											<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
-											<img src="images/home/VintageLamp1.jpg" alt="" />
-											<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+									<div class="productinfo text-center">
+										<a href="product-details.php?productID=<?php echo "$row->productID" ?>"><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> /></a>
+											<h2>$<?php echo "$row->price"; ?></h2>
+											<p><?php echo "$row->name"; ?></p>
+											<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>
+											<a href="cart.php" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
 										<div class="product-overlay">
 											<div class="overlay-content">
-												<?php print "<p>".$featured_item->price."</p>\n";  ?>
-												<?php print "<p>".$featured_item->name."</p>\n";  ?>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+												<h2>$<?php echo "$row->price"; ?></h2>
+												<p><?php echo "$row->name"; ?></p>
+												<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>
+												<a href="cart.php" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 											</div>
-										</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-
-
-				<?php $featured = "SELECT *
-									FROM products
-										WHERE productID=2";
-										$featured_result = $mysqli->query($featured);
-					$featured_item = $featured_result-> fetch_object();
-				?>
-
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
-										<img src="images/home/ModernLamp3.jpg" alt="" />
-										<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<?php print "<p>".$featured_item->price."</p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
 									</div>
 								</div>
 								<div class="choose">
 									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
 								</div>
 							</div>
 						</div>
-
-			<?php $featured = "SELECT *
-									FROM products
-										WHERE productID=3";
-										$featured_result = $mysqli->query($featured);
-					$featured_item = $featured_result-> fetch_object();
-				?>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<?php print "<img src=\"".$featured_item->image_tn."\" alt=\"".$featured_item->name."\"\n"; ?>
-										<img src="images/home/RusticLamp4.jpg" alt="" />
-										<?php print "<p><h2>".$featured_item->price."</h2></p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<?php print "<p>".$featured_item->price."</p>\n";  ?>
-											<?php print "<p>".$featured_item->name."</p>\n";  ?>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/ModernLamp2.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Modern Lamp</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Modern Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/new.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/RusticLamp1.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Rustic Lamp</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Rustic Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-									<img src="images/home/sale.png" class="new" alt="" />
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="product-image-wrapper">
-								<div class="single-products">
-									<div class="productinfo text-center">
-										<img src="images/home/VintageLamp1.jpg" alt="" />
-										<h2>$56</h2>
-										<p>Vintage Lamp</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-									<div class="product-overlay">
-										<div class="overlay-content">
-											<h2>$56</h2>
-											<p>Vintage Lamp</p>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-										</div>
-									</div>
-								</div>
-								<div class="choose">
-									<ul class="nav nav-pills nav-justified">
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-										<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-									</ul>
-								</div>
-							</div>
-						</div>
-						
+						<?php } ?>	
 					</div><!--features_items-->
-					
-					<div class="category-tab"><!--category-tab-->
-						<div class="col-sm-12">
-							<ul class="nav nav-tabs">
-								<li class="recent"><a href="#lamps" data-toggle="tab">Recently Viewed</a></li>
-								<li><a href="#hot" data-toggle="tab">Hot Items</a></li>
-							</ul>
-						</div>
-						<div class="tab-content">
-							<div class="tab-pane fade active in" id="recent" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/VintageLamp3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/ModernLamp3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/RusticLamp2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Rustic Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/ModernLamp1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-
-						<div class="tab-pane fade active in" id="hot" >
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/VintageLamp3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Vintage Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/ModernLamp3.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/RusticLamp2.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Rustic Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-								<div class="col-sm-3">
-									<div class="product-image-wrapper">
-										<div class="single-products">
-											<div class="productinfo text-center">
-												<img src="images/home/ModernLamp1.jpg" alt="" />
-												<h2>$56</h2>
-												<p>Modern Lamp</p>
-												<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-											</div>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-					</div><!--/category-tab-->
-					
-					<div class="recommended_items"><!--recommended_items-->
-						<h2 class="title text-center">recommended items</h2>
-						
-						<div id="recommended-item-carousel" class="carousel slide" data-ride="carousel">
-							<div class="carousel-inner">
-								<div class="item active">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-								</div>
-								<div class="item">	
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend1.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend2.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="product-image-wrapper">
-											<div class="single-products">
-												<div class="productinfo text-center">
-													<img src="images/home/recommend3.jpg" alt="" />
-													<h2>$56</h2>
-													<p>Easy Polo Black Edition</p>
-													<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-												</div>
-												
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							 <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
-								<i class="fa fa-angle-left"></i>
-							  </a>
-							  <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
-								<i class="fa fa-angle-right"></i>
-							  </a>			
-						</div>
-					</div><!--/recommended_items-->
-					
-				</div>
 			</div>
 		</div>
 	</section>
