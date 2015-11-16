@@ -116,7 +116,7 @@
 												<h2><?php echo "$row->name"; ?></h2>
 												<p>$<?php echo "$row->price"; ?></p>
 												<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>
-                        <?php echo "<a href='addtocart.php?id=$row->productID&name=$row->name' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Add to cart</a>" ?>
+                        						<?php echo "<a href='addtocart.php?id=$row->productID&name=$row->name' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Add to cart</a>" ?>
 											</div>
 									</div>
 								</div>
