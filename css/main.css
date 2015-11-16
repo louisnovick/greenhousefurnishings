@@ -904,7 +904,6 @@ h2.title {
 
 .single-products:hover .product-overlay {
   display:block;
-  height:100%;
 }
 
 
@@ -2620,7 +2619,7 @@ input[readonly] {
 }
 
 @media (max-width: 768px) { /* use the max to specify at each container level */
-    .row_desc {    
+    .row_desc {
         width:360px;  /* adjust to desired wrapping */
         display:table;
         white-space: pre-wrap; /* css-3 */
@@ -3562,10 +3561,10 @@ h2.title {
   opacity:0;
 }
 
-.single-products:hover .product-overlay {
+/*.single-products:hover .product-overlay {
   display:block;
   height:100%;
-}
+}*/
 
 
 .product-overlay .overlay-content {
@@ -5263,7 +5262,7 @@ input[readonly] {
 }
 
 @media (max-width: 768px) { /* use the max to specify at each container level */
-    .row_desc {    
+    .row_desc {
         width:360px;  /* adjust to desired wrapping */
         display:table;
         white-space: pre-wrap; /* css-3 */
