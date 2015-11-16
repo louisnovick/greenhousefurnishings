@@ -77,7 +77,7 @@
               <div class="item">
                 <div class="col-sm-6">
                   <h1><span>GREEN</span>HOUSE</h1>
-                  <h2>Eco-Friendly Furniture</h2>
+                  <h2>Vintage Collection</h2>
                   <p>Feed your nostalgia and shop all vintage furniture! Our Vintage Collection will be sure to remind you of the good ol' days!</p>
                   <a href="shop.php?collection=vintage" class="btn btn-default get">View Now</a>
                 </div>
