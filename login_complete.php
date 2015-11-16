@@ -8,7 +8,7 @@
     $signup_complete = false;
 
     $pattern_username = "/^[a-zA-Z0-9_-~ @ # $ ^ &]{3,16}$/";
-    $pattern_password = "/^[a-z0-9_-~ @ # $ ^ &]{3,18}$/";
+    $pattern_password = "/^[a-zA-Z0-9_-~ @ # $ ^ &]{3,18}$/";
     $pattern_email = "/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/";
     $pattern_fname = "/^[a-zA-Z]{1,16}$/";
     $pattern_lname = "/^[a-zA-Z]{1,16}$/";

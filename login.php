@@ -6,7 +6,7 @@
 	$failed_login = false;
 
 	$pattern_username = "/^[a-zA-Z0-9_-]{3,16}$/";
-	$pattern_password = "/^[a-z0-9_-~ @ # $ ^ &]{3,18}$/";
+	$pattern_password = "/^[a-zA-Z0-9_-~ @ # $ ^ &]{3,18}$/";
 
 	if(isset($_POST['submit']) && (!isset($_SESSION['logged_in']))) {
 		if (preg_match($pattern_username, $_POST['username']) == 1 && preg_match($pattern_password, $_POST['password']) == 1) {

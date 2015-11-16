@@ -19,7 +19,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->
+    <![endif]-->       
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -27,7 +27,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
     <link rel="stylesheet" href="css/responsive.bootstrap.min.css" />
-
+    
 </head><!--/head-->
 <?php include("db_connect.php");
   $select_types = "select distinct type from products";
@@ -37,10 +37,10 @@
 ?>
 <body>
   <?php include("header.php"); ?>
-
+  
   <?php
     if(isset($_SESSION["logged_in"])){
-      if($_SESSION["logged_in_user_access"] == "administrative")
+      if($_SESSION["logged_in_user_access"] == "administrative") 
         $auth = "a";
       else if($_SESSION["logged_in_user_access"] == "privileged")
         $auth = "p";
@@ -54,7 +54,7 @@
   <div class="container">
     <div id="edit-product" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
+    
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -70,16 +70,16 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-
+    
       </div>
     </div> <!-- end modal -->
   </div>
-
+  
   <!-- Edit User Modal -->
   <div class="container">
     <div id="edit-user" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
+    
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -95,16 +95,16 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-
+    
       </div>
     </div> <!-- end modal -->
   </div>
-
+  
   <!-- New Product Modal -->
   <div class="container">
     <div id="new-product" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
+    
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -119,16 +119,16 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-
+    
       </div>
     </div> <!-- end modal -->
   </div>
-
+  
   <!-- New User Modal -->
   <div class="container">
     <div id="new-user" class="modal fade" role="dialog">
       <div class="modal-dialog">
-
+    
         <!-- Modal content-->
         <div class="modal-content">
           <div class="modal-header">
@@ -143,12 +143,12 @@
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           </div>
         </div>
-
+    
       </div>
     </div> <!-- end modal -->
   </div>
-
-
+  
+  
 
   <section id="admin-main">
     <div class="container">
@@ -202,8 +202,8 @@
                 <span class="glyphicon glyphicon-user" style="color:#3C763D" aria-hidden="true"></span> Add New User
               </button>
             </div>
-
-
+            
+            
             <table id="users-table" class="table table-striped table-bordered dt-responsive nowrap">
               <thead>
                 <tr>
@@ -224,18 +224,18 @@
       </div>
       </div>
     </div>
-
-
+    
+    
   </section>
-
+  
   <?php }
-
+  
   else {
     include ("404.php");
   }
-
+  
   include("footer.php"); ?>
-
+  
 
 
     <script src="js/jquery.js"></script>
@@ -262,10 +262,10 @@
             }
             xmlhttp.open("GET", "php/AdminCRUD.php?prod_id="+prod_id+"&param=edit", true);
             xmlhttp.send();
-
+            
         }
     }
-
+    
     function NewProductPrep(){
       if(window.XMLHttpRequest){
         var xmlhttp = new XMLHttpRequest();
@@ -278,7 +278,7 @@
       xmlhttp.open("GET", "php/AdminCRUD.php?prod_id=0&param=new", true);
       xmlhttp.send();
     }
-
+    
     function UserInfoCallback(username){
         if(username == "") {
             return;
@@ -293,10 +293,10 @@
             }
             xmlhttp.open("GET", "php/AdminCRUD.php?user="+username+"&user_param=edit", true);
             xmlhttp.send();
-
+            
         }
     }
-
+    
     function NewUserPrep(){
       if(window.XMLHttpRequest){
         var xmlhttp = new XMLHttpRequest();
@@ -309,7 +309,7 @@
       xmlhttp.open("GET", "php/AdminCRUD.php?user_param=new", true);
       xmlhttp.send();
     }
-
+    
     function ProductListCallback(){
       if(window.XMLHttpRequest){
           var xmlhttp = new XMLHttpRequest();
@@ -322,7 +322,7 @@
       xmlhttp.open("GET", "php/list_products.php?name=", true);
       xmlhttp.send();
     }
-
+    
     function DeleteUser(){
       if(confirm("This user will be permenantly deleted.")){
         var user = $("span[id^='old-username']").attr("id").split("_")[1];
@@ -340,13 +340,13 @@
                 //gimme status
                 //alert(data);
               },
-              error: function(errorThrown) {
-                alert(errorThrown);
+              error: function(errorThrown) { 
+                alert(errorThrown); 
             }
         });
       }
     }
-
+    
     function DeleteProduct(){
       if(confirm("This product will be permenantly deleted.")){
         var id = $("span[id^='productID']").attr("id").split("_")[1];
@@ -364,28 +364,28 @@
                 //gimme status
                 //alert(data);
               },
-              error: function(errorThrown) {
-                alert(errorThrown);
+              error: function(errorThrown) { 
+                alert(errorThrown); 
             }
         });
       }
     }
-
+    
     String.prototype.capitalizeFirstLetter = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
   }
-
+    
     function StoreFile(s){
       $(s).parent().parent().next().val($(s).prop("files")[0].name);
     }
-
+    
     $(document).ready(function(){
-
-
-
+      
+      
+      
       //$(".div-desc").css("white-space", "normal");
       $(".submit-btn").click(function(){
-
+        
         var sku = $("#sku").val();
         var price = $("#price").val();
         var name = $("#name").val();
@@ -411,7 +411,7 @@
         var imageTNName = 0;
         var id = 0;
         if($("#imageFS").prop("files")){
-          if($("#imageFS").prop("files").length != 0){
+          if($("#imageFS").prop("files").length != 0){  
             var imageFS = $("#imageFS").prop("files")[0];
             var imageFSName = $("#imageFS").prop("files")[0].name;
           }
@@ -421,7 +421,7 @@
           }
         }
         if($("#feature").is(":checked")) {
-          var feature = "1";
+          var feature = "1";  
         } else { var feature = "0"; }
         if (mode == "product_edit"){
           id = $("span[id^='productID']").attr("id").split("_")[1];
@@ -429,7 +429,7 @@
         else if(mode == "user-edit"){
           id = $("span[id^='old-username']").attr("id").split("_")[1];
         }
-
+        
         var form_data = new FormData();
         form_data.append('sku', sku);
         form_data.append('price', price);
@@ -456,7 +456,7 @@
         form_data.append('imageTN', imageTN);
         form_data.append('imageTNName', imageTNName);
         form_data.append('mode', mode);
-
+        
         $.ajax({
             type: 'POST',
             url: 'php/AdminCRUD.php',
@@ -467,29 +467,29 @@
               //close the modal
             //$(".close").click();
             location.reload();
-
+            
               /*prodTable.row.add([
                 sku, name, type.capitalizeFirstLetter(), desc, col, "<img src='images/thumbnails/"+type+"s/"+imageTNName+"' alt='No Image' />", cost, price, stock, "<span class='edit-icon'><button type='button' class='btn btn-default get' data-toggle='modal' data-target='#edit-product' value='0' onclick='ProductInfoCallback(this.value)'>Edit</button></span>"
               ]).draw(true);*/
             },
               //gimme status
               //alert(data);
-            error: function(errorThrown) {
-              alert(errorThrown);
-          }
+            error: function(errorThrown) { 
+              alert(errorThrown); 
+          }       
       });
       });
       var prodTable = $('#admin-table').DataTable({
         renderer: "bootstrap",
           "bAutoWidth": false
       });
-
+      
       var userTable = $("#users-table").DataTable({
         renderer: "bootstrap",
         "bAutoWidth": false
       });
-
-
+      
+      
       //very silly and bad jquery to fix the datatable width for long descriptions.
       //i'm unable to remove the nowrap class, which is causing the issue but also
       //causing the table to display the correct number of columns in the parent row.
@@ -502,7 +502,7 @@
             setTimeout(function(){
               $(".div-desc").css("display", "");
             },1);
-          },1);
+          },1); 
         });
       });
     });

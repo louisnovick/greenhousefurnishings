@@ -1,6 +1,6 @@
-  <?php
+<?php
     if(isset($_SESSION["logged_in"])){
-      if($_SESSION["logged_in_user_access"] == "administrative")
+      if($_SESSION["logged_in_user_access"] == "administrative") 
         $auth = "a";
       else if($_SESSION["logged_in_user_access"] == "privileged")
         $auth = "p";
