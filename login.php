@@ -24,22 +24,22 @@
             $passwords_match = true;
         }
     }
-    /* end password match*/ 
+    /* end password match*/
     /* if form is filled out, username and email don't exist in database, and passwords match, insert data into database*/
-    if (isset($_POST['signup_submit'])) { 
+    if (isset($_POST['signup_submit'])) {
         if (isset($_POST['first_name'])
-            && $_POST['first_name'] != "" 
+            && $_POST['first_name'] != ""
             && isset($_POST['last_name'])
-            && $_POST['last_name'] != "" 
+            && $_POST['last_name'] != ""
             && isset($_POST['new_email'])
-            && $_POST['new_email'] != "" 
+            && $_POST['new_email'] != ""
             && isset($_POST['new_username'])
-            && $_POST['new_username'] != "" 
+            && $_POST['new_username'] != ""
             && isset($_POST['new_password'])
             && $_POST['new_password'] != ""
             && $username_exists == false
             && $email_exists == false
-            && $passwords_match == true) { 
+            && $passwords_match == true) {
             $add_user_query = "INSERT INTO users (fName, lName, email, username, password, userAccess)
                                 VALUES ('".$_POST['first_name']."', '".$_POST['last_name']."', '".$_POST['new_email']."', '".$_POST['new_username']."', '".md5($_POST['new_password'])."', 'user')";
             $mysqli->query($add_user_query);
@@ -87,11 +87,11 @@
                 $failed_login = true;
             } else {
                 $failed_login = false;
-                
+
             }
         }
     }
-?> 
+?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -112,7 +112,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -121,8 +121,8 @@
 </head><!--/head-->
 
 <body>
-	<?php include("header.php"); 
-          
+	<?php include("header.php");
+
           if ($signup_complete == true) {
     ?>
     <div>
@@ -131,7 +131,7 @@
         <a href="home.php">Home</a>         <a href="shop.php">Shop</a>
     </div>
     <?php
-            } else { 
+            } else {
     ?>
     <section id="form"><!--form-->
 		<div class="container">
@@ -143,7 +143,7 @@
 							<input name="username" id="username" type="text" placeholder="Username" />
 							<input name="password" id="password" type="password" placeholder="Password" />
 							<span>
-								<input type="checkbox" class="checkbox"> 
+								<input type="checkbox" class="checkbox">
 								Keep me signed in
 							</span>
 							<button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
@@ -160,9 +160,9 @@
                             <input type="text" placeholder="First Name" name="first_name" id="first_name"
                                     <?php if (isset($_POST['first_name'])) {
                                         print("value=\"".$_POST['first_name']."\"");
-                                    } ?> 
+                                    } ?>
                                 />
-                                <?php  
+                                <?php
                                     if (isset($_POST['first_name'])) {
                                         if ($_POST['first_name'] == "") {
                                             print("<span class=\"error\">You must submit a first name.</span>");
@@ -174,9 +174,9 @@
                                 <input type="text" placeholder="Last Name" name="last_name" id="last_name"
                                     <?php if (isset($_POST['last_name'])) {
                                         print("value=\"".$_POST['last_name']."\"");
-                                    } ?> 
+                                    } ?>
                                 />
-                                <?php  
+                                <?php
                                     if (isset($_POST['last_name'])) {
                                         if ($_POST['last_name'] == "") {
                                             print("<span class=\"error\">You must submit a last name.</span>");
@@ -226,13 +226,13 @@
 		</div>
 	</section><!--/form-->
 
-   
 
-    <?php 
+
+    <?php
         }
-        include("footer.php"); 
+        include("footer.php");
     ?>
-    
+
 
 
     <script src="js/jquery.js"></script>
