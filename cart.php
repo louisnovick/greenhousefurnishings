@@ -96,10 +96,10 @@
             ?>
             <tr>
               <td class="cart_product">
-                <a href=""><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> /></a>
+                <a href="product-details.php?productID=<?php echo $row->productID; ?>"><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?>></a>
               </td>
               <td class="cart_description">
-                <h4><a href=""><?php echo "$row->name"; ?></a></h4>
+                <h4><a href="product-details.php?productID=<?php echo $row->productID; ?>"><?php echo "$row->name"; ?></a></h4>
                 <p>SKU: <?php echo "$row->sku"; ?></p>
               </td>
               <td class="cart_price">
@@ -135,9 +135,9 @@
 	<section id="do_action">
 		<div class="container">
 			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-			</div>
+				<h3>Ready to Checkout?</h3>
+				<!--<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>-->
+			</div><!--
 			<div class="row">
 				<div class="col-sm-6">
 					<div class="chose_area">
@@ -182,7 +182,8 @@
 						<a class="btn btn-default check_out" href="">Continue</a>
 					</div>
 				</div>
-				<div class="col-sm-6">
+        -->
+				<div>
 					<div class="total_area">
 						<ul>
 							<li>Cart Sub Total <span>$297</span></li>
@@ -190,7 +191,8 @@
 							<li>Shipping Cost <span>Free</span></li>
 							<li>Total <span>$327</span></li>
 						</ul>
-							<a class="btn btn-default update" href="">Update</a>
+							<!--<a class="btn btn-default update" href="">Update</a>-->
+              <a class="btn btn-default check_out" href="shop.php">Continue Shopping</a>
 							<a class="btn btn-default check_out" href="">Check Out</a>
 					</div>
 				</div>
