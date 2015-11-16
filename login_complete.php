@@ -246,6 +246,7 @@
             ?>
             <button type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>
         </form>
+    </div>
 
     <?php 
         }
