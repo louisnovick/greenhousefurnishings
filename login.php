@@ -10,11 +10,16 @@
     $search_user_query = "SELECT * FROM users";
     $search_user_result = $mysqli->query($search_user_query);
     while($row = $search_user_result->fetch_object()) {
-        if ($_POST['new_username'] == $row->username) {
-            $username_exists = true;
+        if (isset($_POST['new_username'])){
+            if($_POST['new_username'] == $row->username){
+                $username_exists = true;
+            }
         }
-        if ($_POST['new_email'] == $row->email) {
-            $email_exists = true;
+
+        if (isset($_POST['new_email'])){
+            if($_POST['new_email'] == $row->email){
+                $email_exists = true;
+            }
         }
     }
     /* end username and email check*/
@@ -55,17 +60,19 @@
                 print "Error: Someone's getting fired.";
             }
             while($row = $user_result->fetch_object()) {
-                if((($_POST['new_username']) == ($row->username)) && (md5($_POST['new_password']) == ($row->password))) {
-                    $_SESSION['logged_in'] = true;
-                    $_SESSION['logged_in_user'] = $row->username;
-                    $_SESSION['logged_in_user_access'] = $row->userAccess;
-                    $_SESSION['logged_in_user_fn'] = $row->fName;
-                    $_SESSION['logged_in_user_ln'] = $row->lName;
-                    $_SESSION['logged_in_user_email'] = $row->email;
-                } else if((($_POST['new_username']) != ($row->username)) && ($_POST['new_password'] != ($row->password))) {
-                    $failed_login = true;
-                } else {
-                    $failed_login = false;
+                if(isset($_POST['new_username']) && isset($_POST['new_username'])){
+                    if((($_POST['new_username']) == ($row->username)) && (md5($_POST['new_password']) == ($row->password))) {
+                        $_SESSION['logged_in'] = true;
+                        $_SESSION['logged_in_user'] = $row->username;
+                        $_SESSION['logged_in_user_access'] = $row->userAccess;
+                        $_SESSION['logged_in_user_fn'] = $row->fName;
+                        $_SESSION['logged_in_user_ln'] = $row->lName;
+                        $_SESSION['logged_in_user_email'] = $row->email;
+                    } else if((($_POST['new_username']) != ($row->username)) && ($_POST['new_password'] != ($row->password))) {
+                        $failed_login = true;
+                    } else {
+                        $failed_login = false;
+                    }
                 }
             }
     } else {
@@ -75,7 +82,8 @@
             print "Error: Someone's getting fired.";
         }
         while($row = $user_result->fetch_object()) {
-            if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
+            if(isset($_POST['username']) && isset($_POST['password'])){
+                if((($_POST['username']) == ($row->username)) && (md5($_POST['password']) == ($row->password))) {
                 $_SESSION['logged_in'] = true;
                 $_SESSION['logged_in_user'] = $row->username;
                 $_SESSION['logged_in_user_access'] = $row->userAccess;
@@ -83,11 +91,11 @@
                 $_SESSION['logged_in_user_ln'] = $row->lName;
                 $_SESSION['logged_in_user_email'] = $row->email;
                 header("Location: home.php");
-            } else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
-                $failed_login = true;
-            } else {
-                $failed_login = false;
-
+                } else if((($_POST['username']) != ($row->username)) && ($_POST['password'] != ($row->password))) {
+                    $failed_login = true;
+                } else {
+                    $failed_login = false;
+                }
             }
         }
     }
@@ -106,8 +114,8 @@
     <link href="css/prettyPhoto.css" rel="stylesheet">
     <link href="css/price-range.css" rel="stylesheet">
     <link href="css/animate.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
+  <link href="css/main.css" rel="stylesheet">
+  <link href="css/responsive.css" rel="stylesheet">
     <link href="css/andrew_style.css" rel="stylesheet">
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
@@ -121,7 +129,7 @@
 </head><!--/head-->
 
 <body>
-	<?php include("header.php");
+  <?php include("header.php");
 
           if ($signup_complete == true) {
     ?>
@@ -134,27 +142,27 @@
             } else {
     ?>
     <section id="form"><!--form-->
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 col-sm-offset-1">
-					<div class="login-form"><!--login form-->
-						<h2>Login to your account</h2>
-						<form action="login.php" method="post">
-							<input name="username" id="username" type="text" placeholder="Username" />
-							<input name="password" id="password" type="password" placeholder="Password" />
-							<span>
-								<input type="checkbox" class="checkbox">
-								Keep me signed in
-							</span>
-							<button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
-						</form>
-					</div><!--/login form-->
-				</div>
-				<div class="col-sm-1">
-					<h2 class="or">OR</h2>
-				</div>
-				<div class="col-sm-4">
-					 <div class="signup-form"><!--sign up form-->
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-sm-offset-1">
+          <div class="login-form"><!--login form-->
+            <h2>Login to your account</h2>
+            <form action="login.php" method="post">
+              <input name="username" id="username" type="text" placeholder="Username" />
+              <input name="password" id="password" type="password" placeholder="Password" />
+              <span>
+                <input type="checkbox" class="checkbox">
+                Keep me signed in
+              </span>
+              <button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
+            </form>
+          </div><!--/login form-->
+        </div>
+        <div class="col-sm-1">
+          <h2 class="or">OR</h2>
+        </div>
+        <div class="col-sm-4">
+           <div class="signup-form"><!--sign up form-->
                         <h2>Complete your sign up!</h2>
                         <form action="login_complete.php" method="post">
                             <input type="text" placeholder="First Name" name="first_name" id="first_name"
@@ -221,10 +229,10 @@
                             <button type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>
                         </form>
                     </div>
-				</div>
-			</div>
-		</div>
-	</section><!--/form-->
+        </div>
+      </div>
+    </div>
+  </section><!--/form-->
 
 
 

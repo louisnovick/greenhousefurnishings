@@ -5,6 +5,7 @@
 
     $action = isset($_GET['action']) ? $_GET['action'] : "";
     $name = isset($_GET['name']) ? $_GET['name'] : "";
+    //$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : "";
 
     if($action=='removed'){
         echo "<div class='alert alert-info'>";
@@ -18,11 +19,11 @@
       echo "</div>";
     }
 
-    else if($action=='quantity_updated'){
-        echo "<div class='alert alert-info'>";
-            echo "<strong>{$name}</strong> quantity was updated!";
-        echo "</div>";
-    }
+    /*if($action=='quantity_add'){
+      echo "<div class='alert alert-info'>";
+          echo "<strong>Quantity was updated to {$quantity} {$name}</strong> ";
+      echo "</div>";
+    }*/
 ?>
 
 <!DOCTYPE html>
@@ -57,7 +58,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="home.php">Home</a></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
@@ -82,6 +83,7 @@
               $ids = "";
               foreach($_SESSION['cart_items'] as $id=>$value){
                   $ids = $ids . $id . ",";
+                  //$quantity = 1;
               }
 
               // remove the last comma
@@ -91,6 +93,10 @@
                     FROM products
                     WHERE productID IN ({$ids}) ORDER BY name";
               $select_products_result = $mysqli->query($cart_query);
+
+            if( !$select_products_result ) {
+              die($mysqli->error);
+            } else {
 
             while($row = $select_products_result->fetch_object()) {
             ?>
@@ -107,8 +113,7 @@
               </td>
               <td class="cart_quantity">
                 <div class="cart_quantity_button">
-                  <a class="cart_quantity_up" href=""> + </a>
-                  <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                  <?php echo "<a href='cart.php?id=$row->productID&name=$row->name&action=quantity_add'> + </a>"; ?>
                   <a class="cart_quantity_down" href=""> - </a>
                 </div>
               </td>
@@ -120,6 +125,8 @@
               </td>
             </tr>
             <?php }
+              }
+
               } else {
                   echo "<div class='alert alert-danger'>";
                       echo "<strong>No products found</strong> in your cart!";
