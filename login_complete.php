@@ -161,12 +161,14 @@
           
           if ($signup_complete == true) {
     ?>
-    <div class="col-md-6 col-md-offset-3">
-        <h2 class="text-center">Your account creation was successful!</h2>
-        <br>
-        <a class="btn btn-default get pull-left" href="home.php">Home</a> 
-        <a class="btn btn-default get pull-right" href="shop.php">Shop</a>
-    </div>
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <h2 class="text-center">Your account creation was successful!</h2>
+            <br>
+            <a class="btn btn-default get pull-left" href="home.php">Home</a> 
+            <a class="btn btn-default get pull-right" href="shop.php">Shop</a>
+        </div>
+    </div>    
     <?php
             } else { 
     ?>
