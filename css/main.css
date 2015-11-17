@@ -5292,7 +5292,6 @@ input[readonly] {
 #feature{
   height:20px;
 }
-
 /* This section is the Style for the stars */
 
 div.stars {
@@ -5303,13 +5302,13 @@ input.star { display: none; }
 label.star {
   float: right;
   padding: 10px;
-  font-size: 36px;
+  font-size: 25px;
   color: #444;
   transition: all .2s;
 }
 input.star:checked ~ label.star:before {
   content: '\f005';
-  color: #FD4;
+  color: #397D02;
   transition: all .25s;
 }
 ​
@@ -5324,4 +5323,11 @@ label.star:before {
   font-family: FontAwesome;
 }
 
+.fa-star {
+  color: #397D02;
+}
+
+.fa-star-o {
+  color: #397D02;
+}
 /* end stars */
