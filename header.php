@@ -10,6 +10,8 @@
     else
       $auth = "u";
   ?>
+
+  
   <header id="header"><!--header-->
     <div class="header_top"><!--header_top-->
       <div class="container">
