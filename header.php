@@ -99,7 +99,10 @@
           </div>
           <div class="col-sm-3">
             <div class="search_box pull-right">
-              <input type="text" placeholder="Search"/>
+              <form action="search.php" method="post">
+                <input type="text" placeholder="Search" name="search" id="search" />
+                <button name="submit" id="submit" type="submit" class="btn btn-default">Search</button>
+              </form>
             </div>
           </div>
         </div>
