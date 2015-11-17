@@ -14,7 +14,6 @@
     echo "</div>";
   }
 
-
   if($action=='exists'){
     $quantity =  $_GET['quantity']++;
     echo "<div class='alert alert-info'>";

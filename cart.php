@@ -21,7 +21,7 @@
 
    if($action=='exists'){
       echo "<div class='alert alert-info'>";
-          echo "<strong>Quantity was updated by {$quantity} {$name}</strong> ";
+          echo "<strong>{$name} is already in cart</strong> ";
       echo "</div>";
     }
 
@@ -120,10 +120,10 @@
                 </p>
               </td>
               <td class="cart_quantity">
+                <div class="text-center"><?php echo $quantity; ?></div>
                 <div class="cart_quantity_button">
-                  <div><?php echo $quantity; ?></div>
                   <?php echo "<a href='cart.php?id=$row->productID&name=$row->name&action=quantity_add'> + </a>"; ?>
-                  <a class="cart_quantity_down" href=""> - </a>
+                  <?php echo "<a href='removefromcart.php?id=$row->productID&name=$row->name' class='cart_quantity_down'> - </a>"; ?>
                 </div>
               </td>
               <td class="cart_total">

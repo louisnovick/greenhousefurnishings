@@ -5303,3 +5303,28 @@ input[readonly] {
 
 .signup-form{
 	padding-bottom:25px;}
+
+.bill-to input[type="text"] {
+  padding: 3px;
+  min-width: 200px;
+  width: 30%;
+  margin: 0px 0px 15px 0;
+}
+
+.bill-to input.cart {
+  padding: 10px 35px;
+  margin: 0;
+  margin-bottom: 60px;
+}
+
+small.ccinfo {
+  display: block;
+  margin-bottom: 20px;
+  color: red;
+}
+
+.resultstable {
+  margin-bottom: 75px;
+  font-size: 18px;
+  line-height: 35px;
+}

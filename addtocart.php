@@ -5,7 +5,7 @@ $id = isset($_GET['id']) ? $_GET['id'] : "";
 $name = isset($_GET['name']) ? $_GET['name'] : "";
 
 
-$_SESSION['cart_items'][$id][$name]['quantity']++;
+//$_SESSION['cart_items'][$id][$name]['quantity']++;
 
 if(!isset($_SESSION['cart_items'])){
   $_SESSION['cart_items'] = array();
