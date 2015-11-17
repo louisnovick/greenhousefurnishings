@@ -148,11 +148,15 @@
 			</div>
 				<div>
 					<div class="total_area">
+          <?php
+            $eco = 30;
+            $shipping = 0;
+          ?>
 						<ul>
 							<li>Cart Sub Total <span>$<?php echo $cartTotal; ?></span></li>
 							<li>Eco Tax <span>$30</span></li>
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$327</span></li>
+							<li>Total <span>$<?php echo $cartTotal+$shipping+$eco; ?>  </span></li>
 						</ul>
 
             <a class="btn btn-default check_out" href="shop.php">Continue Shopping</a>
