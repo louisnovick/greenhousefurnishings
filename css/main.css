@@ -3510,6 +3510,10 @@ h2.title {
   margin-bottom:30px;
 }
 
+.product-image-wrapper h2 {
+  height: 100px;
+}
+
 .single-products {
   position: relative;
 }
