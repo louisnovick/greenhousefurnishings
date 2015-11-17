@@ -1,5 +1,8 @@
 <?php
     session_start();
+
+    include("db_connect.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +22,7 @@
     <!--[if lt IE 9]>
     <script src="js/html5shiv.js"></script>
     <script src="js/respond.min.js"></script>
-    <![endif]-->       
+    <![endif]-->
     <link rel="shortcut icon" href="images/ico/favicon.ico">
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
@@ -34,7 +37,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><a href="home.php">Home</a></li>
 				  <li class="active">Check out</li>
 				</ol>
 			</div><!--/breadcrums-->
@@ -111,8 +114,8 @@
 									<input type="tel" placeholder="Fax" pattern="^\d{3}-?\d{3}-?\d{4}$" title="Enter a ten digit phone number. XXX-XXX-XXXX" />
 									<button type="submit" class="btn btn-default get" id="billing-submit">Submit</button>
 								</div>
-						        
-								
+
+
 							</form>
 						</div>
 					</div>
@@ -121,8 +124,8 @@
 							<p>Shipping Order</p>
 							<textarea name="message"  placeholder="Notes about your order, Special Notes for Delivery" rows="12"></textarea>
 							<label><input type="checkbox"> Shipping to bill address</label>
-						</div>	
-					</div>					
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="review-payment">
@@ -130,136 +133,86 @@
 			</div>
 
 			<div class="table-responsive cart_info">
-				<table class="table table-condensed">
-					<thead>
-						<tr class="cart_menu">
-							<td class="image">Item</td>
-							<td class="description">Description</td>
-							<td class="price">Price</td>
-							<td class="quantity">Quantity</td>
-							<td class="total">Total</td>
-							<td></td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/home/thumbnails/VintageLamp1.jpg" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Vintage Lamp</a></h4>
-								<p>SKU ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$99</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$99</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
+        <table class="table table-condensed">
+          <thead>
+            <tr class="cart_menu">
+              <td class="image">Item</td>
+              <td class="description"></td>
+              <td class="price">Price</td>
+              <td class="quantity">Quantity</td>
+              <td class="total">Total</td>
+              <td></td>
+            </tr>
+          </thead>
+          <tbody>
+          <?php
+          if(count($_SESSION['cart_items'])>0){
 
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/home/thumbnails/RusticLamp1.jpg" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Rustic Lamp</a></h4>
-								<p>SKU ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$99</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$99</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td class="cart_product">
-								<a href=""><img src="images/home/thumbnails/ModernLamp1.jpg" alt=""></a>
-							</td>
-							<td class="cart_description">
-								<h4><a href="">Modern Lamp</a></h4>
-								<p>SKU ID: 1089772</p>
-							</td>
-							<td class="cart_price">
-								<p>$99</p>
-							</td>
-							<td class="cart_quantity">
-								<div class="cart_quantity_button">
-									<a class="cart_quantity_up" href=""> + </a>
-									<input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-									<a class="cart_quantity_down" href=""> - </a>
-								</div>
-							</td>
-							<td class="cart_total">
-								<p class="cart_total_price">$99</p>
-							</td>
-							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-							</td>
-						</tr>
-						<tr>
-							<td colspan="4">&nbsp;</td>
-							<td colspan="2">
-								<table class="table table-condensed total-result">
-									<tr>
-										<td>Cart Sub Total</td>
-										<td>$297</td>
-									</tr>
-									<tr>
-										<td>Exo Tax</td>
-										<td>$30</td>
-									</tr>
-									<tr class="shipping-cost">
-										<td>Shipping Cost</td>
-										<td>FREE</td>										
-									</tr>
-									<tr>
-										<td>Total</td>
-										<td><span>$327</span></td>
-									</tr>
-								</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="payment-options">
-				<span>
-					<label><input type="checkbox"> Credit Card</label>
-				</span>
-				<span>
-					<label><input type="checkbox"> Paypal</label>
-				</span>
-			</div>
-			
+              // get the product ids
+              $ids = "";
+              foreach($_SESSION['cart_items'] as $id=>$value){
+                  $ids = $ids . $id . ",";
+                  //$quantity = 1;
+              }
+
+              // remove the last comma
+              $ids = rtrim($ids, ',');
+              //start table
+              $cart_query = "SELECT *
+                    FROM products
+                    WHERE productID IN ({$ids}) ORDER BY name";
+              $select_products_result = $mysqli->query($cart_query);
+
+            if( !$select_products_result ) {
+              die($mysqli->error);
+            } else {
+
+            while($row = $select_products_result->fetch_object()) {
+            ?>
+            <tr>
+              <td class="cart_product">
+                <a href="product-details.php?productID=<?php echo $row->productID; ?>"><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?>></a>
+              </td>
+              <td class="cart_description">
+                <h4><a href="product-details.php?productID=<?php echo $row->productID; ?>"><?php echo "$row->name"; ?></a></h4>
+                <p>SKU: <?php echo "$row->sku"; ?></p>
+              </td>
+              <td class="cart_price">
+                <p>$<?php echo "$row->price"; ?></p>
+              </td>
+              <td class="cart_quantity">
+                <div class="cart_quantity_button">
+                  <?php echo "<a href='cart.php?id=$row->productID&name=$row->name&action=quantity_add'> + </a>"; ?>
+                  <a class="cart_quantity_down" href=""> - </a>
+                </div>
+              </td>
+              <td class="cart_total">
+                <p class="cart_total_price">$<?php echo "$row->price"; ?></p>
+              </td>
+              <td class="cart_delete">
+               <?php echo "<a href='removefromcart.php?id=$row->productID&name=$row->name' class='cart_quantity_delete'><i class='fa fa-times'></i></a>"; ?>
+              </td>
+            </tr>
+            <?php }
+              }
+
+              } else {
+                  echo "<div class='alert alert-danger'>";
+                      echo "<strong>No products found</strong> in your cart!";
+                  echo "</div>";
+              }
+              ?>
+          </tbody>
+        </table>
+      </div>
+
 		</div>
 	</section> <!--/#cart_items-->
 
-	
+
 
 	<?php include("footer.php"); ?>
-	
+
 
 
     <script src="js/jquery.js"></script>

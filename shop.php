@@ -107,7 +107,7 @@
 										<a href="product-details.php?productID=<?php echo "$row->productID" ?>"><img src=<?php echo "\"$row->image_tn\""; ?> alt=<?php echo "\"$row->name\""; ?> /></a>
 											<h2><?php echo "$row->name"; ?></h2>
 											<p>$<?php echo "$row->price"; ?></p>
-											
+
 											<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>
 											<a href="cart.php" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 										</div>
@@ -116,7 +116,7 @@
 												<h2><?php echo "$row->name"; ?></h2>
 												<p>$<?php echo "$row->price"; ?></p>
 												<a href="product-details.php?productID=<?php echo "$row->productID" ?>" class="btn btn-default add-to-cart">View Details</a>
-                        						<?php echo "<a href='addtocart.php?id=$row->productID&name=$row->name' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Add to cart</a>" ?>
+                        <?php echo "<a href='addtocart.php?id=$row->productID&name=$row->name' class='btn btn-default add-to-cart'><i class='fa fa-shopping-cart'></i>Add to cart</a>" ?>
 											</div>
 									</div>
 								</div>
