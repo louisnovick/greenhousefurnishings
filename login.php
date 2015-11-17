@@ -67,6 +67,7 @@
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
+    <link rel="icon" type="image/png" href="favicon.ico">
 </head><!--/head-->
 
 <body>
@@ -86,10 +87,6 @@
 									echo "<span class=\"error\">Wrong Username or Password</span><br>";
 								}
 							?>
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>
 							<button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
 						</form>
 					</div><!--/login form-->

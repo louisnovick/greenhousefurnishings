@@ -27,6 +27,7 @@
     <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
     <link rel="stylesheet" href="css/dataTables.bootstrap.min.css" />
     <link rel="stylesheet" href="css/responsive.bootstrap.min.css" />
+    <link rel="icon" type="image/png" href="favicon.ico">
     
 </head><!--/head-->
 <?php include("db_connect.php");
