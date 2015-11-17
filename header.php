@@ -81,6 +81,15 @@
                 <li><a href="home.php">Home</a></li>
                 <li><a href="shop.php">Shop</a></li>
                 <li><a href="contact-us.php">Contact</a></li>
+                <li class="dropdown"><a href="#">Company Policies<i class="fa fa-angle-down"></i></a>
+                  <ul role="menu" class="sub-menu">
+                    <li><a href="privacy-policy.php">Privacy</a></li>
+                    <li><a href="refund-policy.php">Refunds</a></li> 
+                    <li><a href="shipping-costs.php">Shipping Costs</a></li> 
+                    <li><a href="shipping-policy.php">Shipping Policy</a></li> 
+                    <li><a href="security-policy.php">Security Policy</a></li> 
+                  </ul>
+                </li> 
                 <?php if($auth == "a" || $auth == "p") echo '<li><a href="admin.php">Admin</a></li>'; ?>
                 <?php if (isset($_SESSION['logged_in'])) {
                   echo '<li><a href="user_account.php">Account</a></li>';
