@@ -1,4 +1,6 @@
-
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,24 +41,24 @@
         <div class="row">
             <div class="col-md-6">
                 <h3>First Name:</h3>
-                <p class="text-muted">Bob</p>
+                <p class="text-muted"><?php print($_SESSION['logged_in_user_fn']) ?></p>
                 <hr>
             </div>
             <div class="col-md-6">
                 <h3>Last Name:</h3>
-                <p class="text-muted">Bobberson</p>
+                <p class="text-muted"><?php print($_SESSION['logged_in_user_ln']) ?></p>
                 <hr>
             </div>
         </div>
         <div class="row">
          	<div class="col-md-6">
                 <h3>Email:</h3>
-                <p class="text-muted">Bob@bob.com</p>
+                <p class="text-muted"><?php print($_SESSION['logged_in_user_email']) ?></p>
                 <hr>
 			</div>
             <div class="col-md-6">
                 <h3>Username:</h3>
-                <p class="text-muted">BobzDaBaws</p>
+                <p class="text-muted"><?php print($_SESSION['logged_in_user']) ?></p>
                 <hr>
 			</div>
          </div>

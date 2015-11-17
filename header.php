@@ -82,6 +82,9 @@
                 <li><a href="shop.php">Shop</a></li>
                 <li><a href="contact-us.php">Contact</a></li>
                 <?php if($auth == "a" || $auth == "p") echo '<li><a href="admin.php">Admin</a></li>'; ?>
+                <?php if (isset($_SESSION['logged_in'])) {
+                  echo '<li><a href="user_account.php">Account</a></li>';
+                } ?>
               </ul>
             </div>
           </div>
