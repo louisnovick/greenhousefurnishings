@@ -42,28 +42,25 @@
 				</ol>
 			</div><!--/breadcrums-->
 
-			<div class="step-one">
-				<h2 class="heading">Step1</h2>
-			</div>
 			<div class="checkout-options">
-				<h3>New User</h3>
-				<p>Checkout options</p>
 				<ul class="nav">
+          <?php if(!isset($_SESSION['logged_in'])) { ?>
+            <li><a href="login.php"><i class="fa fa-lock"></i>Register Account</a></li>
+            <li>
+              <label><input type="checkbox"> Guest Checkout</label>
+            </li>
+            <?php } else { ?>
+            <li>Thanks for shopping with us <?php print($_SESSION['logged_in_user']) ?></li>
+          <?php } ?>
+
 					<li>
-						<label><input type="checkbox"> Register Account</label>
-					</li>
-					<li>
-						<label><input type="checkbox"> Guest Checkout</label>
-					</li>
-					<li>
-						<a href=""><i class="fa fa-times"></i>Cancel</a>
+						<a href="cart.php"><i class="fa fa-times"></i>Cancel</a>
 					</li>
 				</ul>
 			</div><!--/checkout-options-->
-
-			<div class="register-req">
-				<p>Please use "Register And Checkout" to easily get access to your order history, or use "Checkout as Guest"</p>
-			</div><!--/register-req-->
+      <br />
+      <br />
+      <br />
 
 			<div class="shopper-informations">
 				<div class="row">
