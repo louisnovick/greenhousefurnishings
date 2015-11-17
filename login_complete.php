@@ -163,12 +163,13 @@
     <div class="col-md-6 col-md-offset-3">
         <h2 class="text-center">Your account creation was successful!</h2>
         <br>
-        <a class="btn btn-default get pull-left" href="home.php">Home</a>         <a class="btn btn-default get pull-right" href="shop.php">Shop</a>
+        <a class="btn btn-default get pull-left" href="home.php">Home</a> 
+        <a class="btn btn-default get pull-right" href="shop.php">Shop</a>
     </div>
     <?php
             } else { 
     ?>
-
+	<div class="row">
     <div class="signup-form col-md-6 col-md-offset-3"><!--sign up form-->
         <h2 class="text-center">Complete your sign up!</h2>
         <form action="login_complete.php" method="post">
@@ -244,8 +245,9 @@
                     print("<br><span class=\"error\">Password does not meet requirements.(Password must be 3-18 characters, can contain: @ # $ ^ &)</span>");
                 }
             ?>
-            <button type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>
+            <button class="center-block" type="submit" name="signup_submit" id="signup_submit" class="btn btn-default">Finish</button>
         </form>
+    </div>
     </div>
 
     <?php 
