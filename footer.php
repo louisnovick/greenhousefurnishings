@@ -15,21 +15,21 @@
 								<h2>Back End Developer</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<p>Andrew Burdett</p>
 								<h2>Back End Developer</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<p>Weston Chapman</p>
 								<h2>Front End Designer</h2>
 							</div>
 						</div>
-						
+
 						<div class="col-sm-2">
 							<div class="video-gallery text-center">
 								<p>Amber Davis</p>
@@ -47,7 +47,7 @@
 								<p>Louis Novick</p>
 								<h2>Group Leader</h2>
 							</div>
-						</div>												
+						</div>
 					</div>
 					<div class="col-sm-3">
 						<div class="address">
@@ -58,7 +58,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-widget">
 			<div class="container">
 				<div class="row">
@@ -68,8 +68,6 @@
 							<ul class="nav nav-pills nav-stacked">
 								<li><a href="contact-us.php">Online Help</a></li>
 								<li><a href="contact-us.php">Contact Us</a></li>
-								<li><a href="#">Order Status</a></li>
-								<li><a href="#">FAQ’s</a></li>
 							</ul>
 						</div>
 					</div>
@@ -90,10 +88,11 @@
 						<div class="single-widget">
 							<h2>Policies</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Terms of Use</a></li>
-								<li><a href="#">Privecy Policy</a></li>
-								<li><a href="#">Refund Policy</a></li>
-								<li><a href="#">Billing System</a></li>
+								<li><a href="privacy-policy.php">Privacy Policy</a></li>
+								<li><a href="refund-policy.php">Refund Policy</a></li>
+								<li><a href="shipping-costs.php">Shipping Costs</a></li>
+                <li><a href="shipping-policy.php">Shipping Policy</a></li>
+                <li><a href="security-policy.php">Security Policy</a></li>
 							</ul>
 						</div>
 					</div>
@@ -101,9 +100,8 @@
 						<div class="single-widget">
 							<h2>About GreenHouse Furniture</h2>
 							<ul class="nav nav-pills nav-stacked">
-								<li><a href="#">Company Information</a></li>
+								<li><a href="contact-us.php">Company Information</a></li>
 								<li><a href="contact-us.php">Store Location</a></li>
-								<li><a href="#">Copyright</a></li>
 							</ul>
 						</div>
 					</div>
@@ -117,11 +115,11 @@
 							</form>
 						</div>
 					</div>
-					
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="footer-bottom">
 			<div class="container">
 				<div class="row">
@@ -130,7 +128,7 @@
 				</div>
 			</div>
 		</div>
-		
+
 	</footer><!--/Footer-->
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

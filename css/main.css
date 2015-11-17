@@ -246,6 +246,15 @@ a#scrollUp i{
   padding-bottom: 10px;
 }
 
+.ppinfo {
+  padding: 50px 0;
+}
+
+.ppinfo h3 {
+  font-size: 16px;
+  line-height: 40px;
+}
+
 .mainmenu ul li a:hover, .mainmenu ul li a.active,  .shop-menu ul li a.active{
   background:none;
   color:#fdb45e;
