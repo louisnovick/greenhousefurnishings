@@ -86,10 +86,6 @@
 									echo "<span class=\"error\">Wrong Username or Password</span><br>";
 								}
 							?>
-							<span>
-								<input type="checkbox" class="checkbox"> 
-								Keep me signed in
-							</span>
 							<button name="submit" id="submit" type="submit" class="btn btn-default">Login</button>
 						</form>
 					</div><!--/login form-->
