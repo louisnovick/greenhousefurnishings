@@ -5,7 +5,7 @@
 
     $action = isset($_GET['action']) ? $_GET['action'] : "";
     $name = isset($_GET['name']) ? $_GET['name'] : "";
-    //$quantity = isset($_GET['quantity']) ? $_GET['quantity'] : "";
+    $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : "";
 
     if($action=='removed'){
         echo "<div class='alert alert-info'>";
@@ -19,11 +19,12 @@
       echo "</div>";
     }
 
-    /*if($action=='quantity_add'){
+   if($action=='exists'){
       echo "<div class='alert alert-info'>";
-          echo "<strong>Quantity was updated to {$quantity} {$name}</strong> ";
+          echo "<strong>Quantity was updated by {$quantity} {$name}</strong> ";
       echo "</div>";
-    }*/
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -77,7 +78,7 @@
 					</thead>
 					<tbody>
           <?php
-          if(count($_SESSION['cart_items'])>0){
+          if(isset($_SESSION['cart_items']) && count($_SESSION['cart_items'])>0){
 
               // get the product ids
               $ids = "";
@@ -111,10 +112,16 @@
                 <p>SKU: <?php echo "$row->sku"; ?></p>
               </td>
               <td class="cart_price">
-                <p>$<?php echo "$row->price"; ?></p>
+                <p>$
+                <?php
+                  $quantity = 1;
+                  echo "$row->price"*$quantity
+                ?>
+                </p>
               </td>
               <td class="cart_quantity">
                 <div class="cart_quantity_button">
+                  <div><?php echo $quantity; ?></div>
                   <?php echo "<a href='cart.php?id=$row->productID&name=$row->name&action=quantity_add'> + </a>"; ?>
                   <a class="cart_quantity_down" href=""> - </a>
                 </div>
@@ -130,9 +137,9 @@
               }
 
               } else {
-                  echo "<div class='alert alert-danger'>";
-                      echo "<strong>No products found</strong> in your cart!";
-                  echo "</div>";
+                echo "<div class='alert alert-danger'>";
+                    echo "<strong>No products found</strong> in your cart!";
+                echo "</div>";
               }
               ?>
 					</tbody>
@@ -153,7 +160,16 @@
             $shipping = 0;
           ?>
 						<ul>
-							<li>Cart Sub Total <span>$<?php echo $cartTotal; ?></span></li>
+							<li>Cart Sub Total <span>$
+              <?php
+                if(isset($cartTotal)) {
+                  echo $cartTotal;
+                } else {
+                  $cartTotal = 0;
+                  echo $cartTotal;
+                }
+              ?>
+              </span></li>
 							<li>Eco Tax <span>$30</span></li>
 							<li>Shipping Cost <span>Free</span></li>
 							<li>Total <span>$<?php echo $cartTotal+$shipping+$eco; ?>  </span></li>

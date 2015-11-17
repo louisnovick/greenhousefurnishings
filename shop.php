@@ -6,6 +6,8 @@
   $action = isset($_GET['action']) ? $_GET['action'] : "";
   $product_id = isset($_GET['product_id']) ? $_GET['product_id'] : "1";
   $name = isset($_GET['name']) ? $_GET['name'] : "";
+  $quantity = isset($_GET['quantity']) ? $_GET['quantity'] : "";
+
   if($action=='added'){
     echo "<div class='alert alert-info'>";
         echo "<strong>{$name}</strong> was added to your cart!";
@@ -14,8 +16,9 @@
 
 
   if($action=='exists'){
+    $quantity =  $_GET['quantity']++;
     echo "<div class='alert alert-info'>";
-        echo "<strong>{$name}</strong> already exists in your cart!";
+        echo "<strong>Another {$name}</strong> added to cart";
     echo "</div>";
   }
 
@@ -120,11 +123,11 @@
 											</div>
 									</div>
 								</div>
-								<div class="choose">
+								<!--<div class="choose">
 									<ul class="nav nav-pills nav-justified">
 										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
 									</ul>
-								</div>
+								</div>-->
 							</div>
 						</div>
 						<?php } ?>
